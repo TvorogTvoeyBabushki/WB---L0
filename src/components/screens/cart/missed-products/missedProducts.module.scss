@@ -1,0 +1,69 @@
+@import '@/assets/styles/variables';
+
+.missed_products {
+	margin-bottom: 40px;
+
+	> div:first-child {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 16px;
+
+		> span {
+			> span {
+				display: inline-block;
+				width: 2px;
+				height: 2px;
+				background-color: $black;
+				border-radius: 50%;
+				color: transparent;
+				line-height: 0;
+			}
+		}
+
+		> button {
+			line-height: 0;
+			padding: 4px;
+			transform: rotate(180deg);
+
+			> svg {
+				> path {
+					transition: fill 0.2s ease-in-out;
+				}
+			}
+
+			&.active {
+				transform: rotate(0deg);
+			}
+
+			&:hover {
+				> svg {
+					> path {
+						fill: $black;
+					}
+				}
+			}
+		}
+	}
+
+	> div:last-child {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		padding-top: 0;
+		border-top: none;
+
+		> div {
+			display: none;
+		}
+
+		&.show {
+			border-top: 1px solid rgba($black, 0.1);
+			padding-top: 11px;
+
+			> div {
+				display: flex;
+			}
+		}
+	}
+}

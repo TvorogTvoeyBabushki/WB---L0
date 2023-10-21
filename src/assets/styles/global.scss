@@ -11,6 +11,7 @@ body {
 	font: 400 normal 1rem/1.5 $font-family;
 	color: $black;
 	overflow-x: hidden;
+	background-color: $violet;
 }
 
 .container {
@@ -18,4 +19,8 @@ body {
 	max-width: 1444px;
 	padding: 0 20px 0 24px;
 	margin: 0 auto;
+
+	&--cart {
+		padding: 0 25px 0 24px;
+	}
 }

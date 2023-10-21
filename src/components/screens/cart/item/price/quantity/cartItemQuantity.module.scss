@@ -1,0 +1,97 @@
+@import '@/assets/styles/variables';
+
+.validation {
+	margin-top: 8px;
+	font-size: 0.8125rem;
+	color: $orange;
+	line-height: 1.23;
+}
+
+.panel {
+	display: flex;
+	justify-content: space-between;
+	align-self: flex-end;
+	margin-top: 16px;
+	width: 56px;
+	opacity: 0;
+
+	transition: opacity 0.4s ease-in-out;
+
+	&.show {
+		opacity: 1;
+	}
+
+	&.close {
+		opacity: 0;
+	}
+
+	> button {
+		width: 20px;
+		height: 20px;
+
+		> svg {
+			> path {
+				transition: stroke 0.2s ease-in-out;
+			}
+		}
+
+		&:first-child {
+			> svg {
+				margin-top: 2px;
+
+				> path {
+					stroke: $black;
+					stroke-width: 2px;
+					fill: none;
+				}
+			}
+
+			&:hover {
+				> svg {
+					> path {
+						stroke: $checkbox-bg;
+					}
+				}
+			}
+		}
+
+		&:last-child {
+			> svg {
+				> path {
+					stroke: $black;
+				}
+			}
+
+			&:hover {
+				> svg {
+					> path {
+						stroke: $orange;
+					}
+				}
+			}
+		}
+
+		&.active {
+			> svg {
+				> path {
+					stroke: $checkbox-bg;
+					fill: $checkbox-bg;
+					transition: all 0.4s ease-in-out;
+				}
+			}
+
+			&:hover {
+				> svg {
+					> path {
+						stroke: $checkbox-bg;
+						fill: $white;
+					}
+				}
+			}
+		}
+	}
+
+	&.missed {
+		margin-top: 0;
+	}
+}

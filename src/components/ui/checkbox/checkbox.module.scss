@@ -1,0 +1,33 @@
+@import '@/assets/styles/variables';
+
+.checkbox {
+	width: 22px;
+	height: 22px;
+	visibility: hidden;
+	position: relative;
+
+	&::before {
+		content: '';
+		width: 100%;
+		height: 100%;
+		border: 1px solid rgba($black, 0.2);
+		background-image: none;
+		background-repeat: no-repeat;
+		background-position: center;
+		visibility: visible;
+		border-radius: 6px;
+		cursor: pointer;
+
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+	}
+
+	&.active::before {
+		background-image: url('/check-mark.svg');
+		background-color: $checkbox-bg;
+		border: none;
+	}
+}

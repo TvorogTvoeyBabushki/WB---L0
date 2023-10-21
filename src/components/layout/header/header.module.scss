@@ -1,8 +1,6 @@
 @import '@/assets/styles/variables';
 
 .header {
-	background-color: $violet;
-
 	.wrapper {
 		display: flex;
 		align-items: center;
@@ -28,13 +26,15 @@
 			}
 		}
 
-		> h1 {
-			font-size: 1.26rem;
-			font-weight: 600;
-			color: $white;
-			line-height: 1.2;
-			letter-spacing: 2px;
-			text-transform: uppercase;
+		> a {
+			> h1 {
+				font-size: 1.375rem;
+				font-weight: 600;
+				color: $white;
+				line-height: 1.09;
+				letter-spacing: 1px;
+				text-transform: uppercase;
+			}
 		}
 
 		.search {
@@ -88,7 +88,7 @@
 				> svg {
 					> g {
 						> path {
-							fill: gray;
+							fill: $gray;
 						}
 					}
 				}

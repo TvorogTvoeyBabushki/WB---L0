@@ -4,6 +4,10 @@ import template from './header.template.html?raw'
 import styles from './header.module.scss'
 
 export class Header {
+	constructor() {
+		this.header = document.createElement('header')
+	}
+
 	#addStyles() {
 		this.wrapper = this.element.querySelector('#header__wrapper')
 		this.search = this.element.querySelector('#header__search')
@@ -28,15 +32,20 @@ export class Header {
 
 	draw() {
 		this.element = RenderService.htmlToElement(template)
-		this.btnCart = this.element.querySelector('#header__cart')
-		this.amountItemsWrapper = document.createElement('div')
 
 		this.#parseCartItemsDataLS()
 
-		this.amountItemsWrapper.append(this.amountItems.length)
-		this.btnCart.append(this.amountItemsWrapper)
+		if (this.amountItems.length) {
+			this.btnCart = this.element.querySelector('#header__cart')
+			this.amountItemsWrapper = document.createElement('div')
+
+			this.amountItemsWrapper.append(this.amountItems.length)
+			this.btnCart.append(this.amountItemsWrapper)
+		}
 
 		this.#addStyles()
-		return this.element
+		this.header.append(this.element)
+
+		return this.header
 	}
 }

@@ -1,0 +1,111 @@
+@import '@/assets/styles/variables';
+
+.price_wrapper {
+	display: flex;
+	flex-grow: 1;
+	gap: 16px;
+
+	> div:first-child {
+		display: flex;
+		flex-direction: column;
+		width: 100px;
+
+		.quantity_btn_wrapper {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			align-self: center;
+			width: 100%;
+			padding: 10px 4px;
+			background-color: $white;
+			border-radius: 8px;
+
+			> button {
+				width: 24px;
+				height: 24px;
+				font-size: 1.25rem;
+				line-height: 1.2;
+
+				&:disabled {
+					color: $disabled-btn;
+				}
+			}
+		}
+	}
+
+	.price {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		gap: 5px;
+		flex-grow: 1;
+
+		> div:first-child {
+			font-size: 1.25rem;
+			font-weight: 700;
+			line-height: 1.4;
+			text-align: end;
+
+			> span {
+				font-size: 1rem;
+				line-height: 1.5;
+			}
+		}
+
+		> div:last-child {
+			width: max-content;
+			font-size: 0.8125rem;
+			color: $gray;
+			line-height: 1.23;
+			position: relative;
+			padding-bottom: 5px;
+			cursor: pointer;
+
+			&::before,
+			&::after {
+				content: '';
+				display: block;
+
+				width: 100%;
+				height: 1px;
+				position: absolute;
+			}
+
+			&::before {
+				background-color: $gray;
+				top: 40%;
+			}
+
+			&::after {
+				bottom: 4px;
+				border-bottom: 1px dashed rgba($black, 0.2);
+			}
+
+			> div {
+				display: flex;
+				flex-direction: column;
+				gap: 8px;
+				width: 239px;
+				padding: 11px 16px 13px;
+				background-color: $white;
+				border-radius: 8px;
+				box-shadow: $box-shadow-info-block;
+				cursor: default;
+				color: $black;
+
+				position: absolute;
+				top: 100%;
+				right: -10px;
+
+				> div {
+					display: flex;
+					justify-content: space-between;
+
+					> span:first-child {
+						color: $light-gray;
+					}
+				}
+			}
+		}
+	}
+}
