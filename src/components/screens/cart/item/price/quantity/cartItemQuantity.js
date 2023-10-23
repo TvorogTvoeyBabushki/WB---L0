@@ -35,7 +35,12 @@ export class CartItemQuantity extends UseCartItemPrice {
 
 			this.quantityValidation.classList.add(styles.validation)
 			this.quantityPanel.before(this.quantityValidation)
-		} else {
+		}
+
+		if (
+			quantityWrapper.querySelector(`.${styles.validation}`) &&
+			cartItem.quantity !== quantity
+		) {
 			quantityWrapper.removeChild(
 				quantityWrapper.querySelector(`.${styles.validation}`)
 			)

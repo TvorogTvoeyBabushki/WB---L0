@@ -4,44 +4,38 @@ import RenderService from '@/services/render.service'
 
 import { currency } from '@/utils/currency'
 
+import { UseSelectedProducts } from './useSelectedProducts'
 import template from './selectedProducts.template.html?raw'
 import styles from './selectedProducts.module.scss'
-import { CartItem } from '../item/cartItem'
 
-export class SelectedProducts {
-	#cartItemsData
+export class SelectedProducts extends UseSelectedProducts {
+	#sessionItemsInfo
 
-	constructor(header) {
-		this.header = header
-		this.#cartItemsData = []
+	constructor(header, cartForm) {
+		super(header, cartForm)
 
-		this.#parseCartItemsDataLS()
+		this.#sessionItemsInfo = []
+		sessionStorage.removeItem('info item')
 	}
 
-	#parseCartItemsDataLS() {
-		if (localStorage.getItem('cart items')) {
-			this.#cartItemsData = [...JSON.parse(localStorage.getItem('cart items'))]
+	#parseSessionItemsInfo() {
+		if (sessionStorage.getItem('info item')) {
+			this.#sessionItemsInfo = JSON.parse(sessionStorage.getItem('info item'))
 		} else {
-			this.#cartItemsData = []
-		}
-	}
-
-	#handleClickCheckbox = variant => {
-		if (variant === 'all') {
-			this.checkboxSelectAll.addStyles(variant)
+			this.#sessionItemsInfo = []
 		}
 	}
 
 	#handleClickProductsArrow = e => {
 		if (this.isShowSelectedProducts) {
 			e.currentTarget.classList.remove(styles.active)
-			const sessionItemsInfo =
-				JSON.parse(sessionStorage.getItem('info item')) || []
-			const quantity = sessionItemsInfo.reduce(
+			this.#parseSessionItemsInfo()
+
+			const quantity = this.#sessionItemsInfo.reduce(
 				(acc, itemInfo) => acc + itemInfo.quantity,
 				0
 			)
-			const amount = sessionItemsInfo.reduce(
+			const amount = this.#sessionItemsInfo.reduce(
 				(acc, itemInfo) => acc + itemInfo.amount,
 				0
 			)
@@ -67,56 +61,20 @@ export class SelectedProducts {
 			)
 			this.#drawCheckboxSelectAll()
 
+			this.#sessionItemsInfo.forEach(itemInfo => {
+				itemInfo.isSelectedAll
+					? this.checkboxSelectAll.addStyles('active')
+					: this.checkboxSelectAll.addStyles('')
+			})
+
 			this.checkboxSelectAllLabel.style.display = 'flex'
 			this.element.classList.add(styles.show)
 			this.isShowSelectedProducts = true
 		}
 	}
 
-	#handleDeleteCartItem = cartItem => {
-		this.#parseCartItemsDataLS()
-
-		const updateCartItems = this.#cartItemsData.filter(
-			cartItemData => cartItemData.id !== cartItem.id
-		)
-
-		localStorage.setItem('cart items', JSON.stringify(updateCartItems))
-
-		this.selectedProductsWrapper.innerHTML = ''
-		this.#drawSelectedProductsWrapper()
-		this.header.draw().innerHTML = ''
-		this.header.draw()
-	}
-
 	#addStyles() {
 		this.element.classList.add(styles.selected_products)
-	}
-
-	#drawSelectedProductsWrapper() {
-		this.#parseCartItemsDataLS()
-		const itemInfoSession = []
-
-		this.#cartItemsData.forEach(cartItem => {
-			this.cartItem = new CartItem('selected')
-			itemInfoSession.push({
-				id: cartItem.id,
-				quantity: 1,
-				amount: cartItem.price.discount
-			})
-
-			this.selectedProductsWrapper.append(this.cartItem.draw(cartItem))
-			this.element.classList.add(styles.show)
-
-			this.btnDeleteProduct =
-				this.cartItem.cartItemPrice.cartItemQuantity.quantityPanel.querySelector(
-					'#btn__cart-delete'
-				)
-			this.btnDeleteProduct.addEventListener('click', () =>
-				this.#handleDeleteCartItem(cartItem)
-			)
-		})
-
-		sessionStorage.setItem('info item', JSON.stringify(itemInfoSession))
 	}
 
 	#drawCheckboxSelectAll() {
@@ -127,7 +85,7 @@ export class SelectedProducts {
 		)
 
 		this.checkboxSelectAll.element.addEventListener('click', () =>
-			this.#handleClickCheckbox('all')
+			this._handleClickCheckbox(this.checkboxSelectAll)
 		)
 	}
 
@@ -143,15 +101,15 @@ export class SelectedProducts {
 			'#cart__selected-products-wrapper'
 		)
 
-		this.#drawCheckboxSelectAll()
-
 		this.isShowSelectedProducts = true
 		this.btnSelectedProducts.classList.add(styles.active)
 		this.btnSelectedProducts.addEventListener('click', e =>
 			this.#handleClickProductsArrow(e)
 		)
 
-		this.#drawSelectedProductsWrapper()
+		this.element.classList.add(styles.show)
+		this._drawSelectedProductsWrapper(this.selectedProductsWrapper)
+		this.#drawCheckboxSelectAll()
 		this.#addStyles()
 
 		wrapper.append(this.element)

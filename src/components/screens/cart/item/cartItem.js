@@ -1,26 +1,28 @@
 import { Checkbox } from '@/components/ui/checkbox/checkbox'
 
 import { CartItemPrice } from './price/cartItemPrice'
+import { UseCartItem } from './useCartItem'
 import styles from './cartItem.module.scss'
 
-export class CartItem {
+export class CartItem extends UseCartItem {
 	constructor(variant) {
+		super()
+
 		this.cartItemWrapper = document.createElement('div')
 		this.variant = variant
 	}
 
-	#handleClickCheckbox = variant => {
-		if (variant === 'cart item') {
-			this.cartItemCheckbox.addStyles(variant)
-		}
+	handleClickCheckbox = (cartItem, cartForm, variant) => {
+		this._handleClickCheckbox(
+			cartItem,
+			cartForm,
+			variant,
+			this.cartItemCheckbox
+		)
 	}
 
 	#handleHoverCompanyInfo = (e, variant, cartItem) => {
-		if (variant === 'enter') {
-			this.#drawCompanyInfoWrapper(e.target, variant, cartItem)
-		} else {
-			this.#drawCompanyInfoWrapper(e.target, variant, cartItem)
-		}
+		this._handleHoverCompanyInfo(e, variant, cartItem)
 	}
 
 	#addStyles() {
@@ -35,37 +37,14 @@ export class CartItem {
 			this.cartItemInfoCompany.classList.add(styles.item_company)
 	}
 
-	#drawCompanyInfoWrapper(companyInfoEl, variant, cartItem) {
-		if (variant === 'enter') {
-			this.companyInfoWrapper = document.createElement('div')
-			this.companyInfoTitle = document.createElement('h3')
-			this.companyInfoIndex = document.createElement('div')
-			this.companyInfoAddress = document.createElement('div')
-
-			this.companyInfoTitle.append(cartItem.company)
-			this.companyInfoIndex.append('ОГРН: 5167746237148')
-			this.companyInfoAddress.append(
-				'129337, Москва, улица Красная Сосна, 2, корпус 1, стр. 1, помещение 2, офис 34'
-			)
-			this.companyInfoWrapper.append(
-				this.companyInfoTitle,
-				this.companyInfoIndex,
-				this.companyInfoAddress
-			)
-			companyInfoEl.append(this.companyInfoWrapper)
-
-			return this.companyInfoWrapper
-		} else {
-			companyInfoEl.removeChild(companyInfoEl.querySelector('div'))
-		}
-	}
-
-	draw(cartItem) {
+	draw(cartItem, cartForm, header) {
+		const sessionItemsInfo =
+			JSON.parse(sessionStorage.getItem('info item')) || []
 		this.cartItem = document.createElement('div')
 		this.cartItemImgLink = document.createElement('a')
 		this.cartItemImg = document.createElement('img')
 		this.cartItemInfo = document.createElement('div')
-		this.cartItemInfoTitle = document.createElement('h2')
+		this.cartItemInfoTitle = document.createElement('h3')
 		this.cartItemInfoTitleLink = document.createElement('a')
 		this.cartItemInfoAddress =
 			this.variant === 'selected' ? document.createElement('div') : ''
@@ -138,12 +117,23 @@ export class CartItem {
 		)
 		this.cartItemWrapper.append(
 			this.cartItem,
-			this.cartItemPrice.draw(cartItem)
+			this.cartItemPrice.draw(
+				cartItem,
+				cartForm,
+				this.handleClickCheckbox,
+				header
+			)
 		)
 
 		this.cartItemCheckbox.element?.addEventListener('click', () =>
-			this.#handleClickCheckbox('cart item')
+			this.handleClickCheckbox(cartItem, cartForm, 'selected')
 		)
+
+		sessionItemsInfo.forEach(itemInfo => {
+			if (itemInfo.id === cartItem.id && itemInfo.isSelectedProduct) {
+				this.cartItemCheckbox.addStyles('active')
+			}
+		})
 
 		if (this.cartItemInfoCompany) {
 			this.cartItemInfoCompanySpan =

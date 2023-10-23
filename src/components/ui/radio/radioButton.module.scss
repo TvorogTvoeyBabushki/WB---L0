@@ -1,0 +1,42 @@
+@import '@/assets/styles/variables';
+
+.radio_btn {
+	width: 16px;
+	height: 16px;
+	visibility: hidden;
+	position: relative;
+	cursor: pointer;
+
+	&::before {
+		content: '';
+		display: block;
+		height: 100%;
+		border-radius: 50%;
+		background-color: $white;
+		visibility: visible;
+		border: 1px solid rgba($black, 0.2);
+	}
+
+	&::after {
+		content: '';
+		display: block;
+		height: 6px;
+		width: 6px;
+		border-radius: 50%;
+		background-color: $white;
+		position: absolute;
+		top: 33%;
+		right: 31%;
+	}
+
+	&.active {
+		&::before {
+			background-color: $accent;
+			border: none;
+		}
+
+		&:after {
+			visibility: visible;
+		}
+	}
+}

@@ -19,7 +19,13 @@ export class CartItemPrice extends UseCartItemPrice {
 		this.variant = variant
 	}
 
-	#handleChangeQuantity = (variant, cartItem) => {
+	#handleChangeQuantity = (
+		variant,
+		cartItem,
+		cartForm,
+		handleClickCheckbox,
+		header
+	) => {
 		const sessionItemsInfo =
 			JSON.parse(sessionStorage.getItem('info item')) || []
 
@@ -43,16 +49,29 @@ export class CartItemPrice extends UseCartItemPrice {
 			)
 		}
 
+		header.draw().innerHTML = ''
 		this.quantityBtnElsWrapper.innerHTML = ''
 		this.price.innerHTML = ''
 
-		this.#drawQuantityBtnElsWrapper(cartItem)
+		header.draw(sessionItemsInfo)
+		this.#drawQuantityBtnElsWrapper(
+			cartItem,
+			cartForm,
+			handleClickCheckbox,
+			header
+		)
 		this.#drawPrice(cartItem)
 		this.cartItemQuantity.drawQuantityValidate(
 			cartItem,
 			this.#quantity,
 			this.quantityWrapper
 		)
+
+		sessionItemsInfo.forEach(itemInfo => {
+			if (itemInfo.id === cartItem.id && itemInfo.isSelectedProduct) {
+				handleClickCheckbox(cartItem, cartForm, 'quantity')
+			}
+		})
 	}
 
 	#handleHoverBasePriceInfo = (e, variant) => {
@@ -65,7 +84,7 @@ export class CartItemPrice extends UseCartItemPrice {
 		this.quantityBtnElsWrapper.classList.add(styles.quantity_btn_wrapper)
 	}
 
-	#drawQuantityBtnElsWrapper(cartItem) {
+	#drawQuantityBtnElsWrapper(cartItem, cartForm, handleClickCheckbox, header) {
 		this.quantitySpan = document.createElement('span')
 		this.quantityBtnEls = ['decrement', 'increment']
 
@@ -82,7 +101,13 @@ export class CartItemPrice extends UseCartItemPrice {
 				: (this[el].disabled = false)
 
 			this[el].addEventListener('click', () =>
-				this.#handleChangeQuantity(el, cartItem)
+				this.#handleChangeQuantity(
+					el,
+					cartItem,
+					cartForm,
+					handleClickCheckbox,
+					header
+				)
 			)
 		})
 
@@ -90,11 +115,16 @@ export class CartItemPrice extends UseCartItemPrice {
 		this.increment.before(this.quantitySpan)
 	}
 
-	#drawQuantity(cartItem) {
+	#drawQuantity(cartItem, cartForm, handleClickCheckbox, header) {
 		this.cartItemQuantity = new CartItemQuantity(this.variant)
 
 		if (this.variant === 'selected') {
-			this.#drawQuantityBtnElsWrapper(cartItem)
+			this.#drawQuantityBtnElsWrapper(
+				cartItem,
+				cartForm,
+				handleClickCheckbox,
+				header
+			)
 			this.quantityWrapper.append(this.quantityBtnElsWrapper)
 		}
 
@@ -126,9 +156,18 @@ export class CartItemPrice extends UseCartItemPrice {
 		return this.price
 	}
 
-	draw(cartItem) {
+	draw(cartItem, cartForm, handleClickCheckbox, header) {
+		const sessionItemsInfo =
+			JSON.parse(sessionStorage.getItem('info item')) || []
+
+		sessionItemsInfo.forEach(itemInfo => {
+			if (itemInfo.id === cartItem.id) {
+				this.#quantity = itemInfo.quantity
+			}
+		})
+
 		this.priceWrapper.append(
-			this.#drawQuantity(cartItem),
+			this.#drawQuantity(cartItem, cartForm, handleClickCheckbox, header),
 			this.variant === 'selected' ? this.#drawPrice(cartItem) : ''
 		)
 

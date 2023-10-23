@@ -1,0 +1,85 @@
+@import '@/assets/styles/variables';
+
+.payment_cards {
+	display: flex;
+	flex-direction: column;
+	width: 39%;
+	height: 100vh;
+	max-height: 408px;
+	padding: 16px 24px 24px;
+	background-color: $white;
+	box-shadow: 0 4px 10px rgba($black, 0.2);
+	border-radius: 16px;
+
+	.payment_cards_header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 13px;
+
+		> h3 {
+			font-size: 1.25rem;
+			font-weight: 700;
+			line-height: 1.4;
+		}
+
+		> button {
+			padding: 2px;
+			width: 24px;
+			height: 24px;
+
+			> svg {
+				width: 15px;
+				height: 15px;
+				> path {
+					transition: fill 0.2s ease-in-out;
+				}
+			}
+
+			&:hover {
+				> svg {
+					> path {
+						fill: $black;
+					}
+				}
+			}
+		}
+	}
+
+	.payment_cards_wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+
+		> div {
+			display: flex;
+			align-items: center;
+
+			> input {
+				margin-right: 10px;
+			}
+
+			> div {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 32px;
+				height: 24px;
+				border-radius: 4px;
+				background-color: $cart-block;
+				margin-right: 4px;
+
+				> img {
+					max-width: 30px;
+				}
+			}
+		}
+	}
+
+	.payment_cards_btn_choose {
+		display: flex;
+		flex-grow: 1;
+		align-items: flex-end;
+		max-width: 164px;
+	}
+}

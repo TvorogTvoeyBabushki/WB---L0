@@ -1,0 +1,16 @@
+@import '@/assets/styles/variables';
+
+.btn {
+	width: 100%;
+	padding: 7.5px 0 12.5px;
+	background-color: $accent;
+	border-radius: 8px;
+	box-shadow: 0 2px 6px rgba($black, 0.08);
+	font-weight: 700;
+	color: $white;
+	transition: all 0.2s ease-in-out;
+
+	&:hover {
+		background-color: rgba($accent, 0.7);
+	}
+}

@@ -27,7 +27,7 @@
 
 	&.active::before {
 		background-image: url('/check-mark.svg');
-		background-color: $checkbox-bg;
+		background-color: $accent;
 		border: none;
 	}
 }

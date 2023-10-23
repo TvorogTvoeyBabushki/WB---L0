@@ -1,0 +1,34 @@
+@font-face {
+	font-family: 'SegoeUILight';
+	src: url('./SegoeUIRegular/SegoeUIRegular.eot');
+	src:
+		url('./SegoeUIRegular/SegoeUIRegular.eot?#iefix')
+			format('embedded-opentype'),
+		url('./SegoeUIRegular/SegoeUIRegular.woff') format('woff'),
+		url('./SegoeUIRegular/SegoeUIRegular.ttf') format('truetype');
+	font-style: normal;
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: 'SegoeUILight';
+	src: url('./SegoeUISemiBold/SegoeUISemiBold.eot');
+	src:
+		url('./SegoeUISemiBold/SegoeUISemiBold.eot?#iefix')
+			format('embedded-opentype'),
+		url('./SegoeUISemiBold/SegoeUISemiBold.woff') format('woff'),
+		url('./SegoeUISemiBold/SegoeUISemiBold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: 600;
+}
+
+@font-face {
+	font-family: 'SegoeUILight';
+	src: url('./SegoeUIBold/SegoeUIBold.eot');
+	src:
+		url('./SegoeUIBold/SegoeUIBold.eot?#iefix') format('embedded-opentype'),
+		url('./SegoeUIBold/SegoeUIBold.woff') format('woff'),
+		url('./SegoeUIBold/SegoeUIBold.ttf') format('truetype');
+	font-style: normal;
+	font-weight: 700;
+}

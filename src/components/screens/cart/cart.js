@@ -3,12 +3,15 @@ import RenderService from '@/services/render.service'
 import { SelectedProducts } from './selected-products/selectedProducts'
 import { MissedProducts } from './missed-products/missedProducts'
 import template from './cart.template.html?raw'
+
+import { CartFrom } from './form/cartForm'
 import styles from './cart.module.scss'
 
 export class Cart {
 	constructor(header) {
 		this.header = header
-		this.selectedProducts = new SelectedProducts(this.header)
+		this.cartForm = new CartFrom()
+		this.selectedProducts = new SelectedProducts(this.header, this.cartForm)
 		this.missedProducts = new MissedProducts()
 	}
 
@@ -25,6 +28,7 @@ export class Cart {
 
 		this.selectedProducts.draw(this.cartLeftItem)
 		this.missedProducts.draw(this.cartLeftItem)
+		this.cartForm.draw(this.cartLeftItem)
 
 		this.#addStyles()
 		return this.element
