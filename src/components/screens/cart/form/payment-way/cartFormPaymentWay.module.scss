@@ -1,0 +1,63 @@
+@import '@/assets/styles/variables';
+
+.cart_payment_way {
+	padding: 16px 24px 24px;
+	background-color: $white;
+	border-radius: 16px;
+
+	.cart_payment_way_header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 16px;
+
+		> h2 {
+			font-size: 1.5rem;
+			font-weight: 700;
+			line-height: 1.333;
+			letter-spacing: -1px;
+		}
+
+		> button {
+			font-weight: 700;
+			color: $accent;
+			transition: opacity 0.2s ease-in-out;
+
+			&:hover {
+				opacity: 0.7;
+			}
+		}
+	}
+
+	.cart_payment_way_info {
+		display: flex;
+		align-items: center;
+
+		.cart_payment_way_image {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 32px;
+			height: 24px;
+			border-radius: 4px;
+			background-color: $cart-block;
+			margin-right: 8px;
+
+			> img {
+				max-width: 30px;
+			}
+		}
+
+		.cart_payment_way_data {
+			display: flex;
+			gap: 12px;
+		}
+	}
+
+	> div:last-child {
+		margin-top: 8px;
+		font-size: 0.8125rem;
+		color: $gray;
+		line-height: 1.23;
+	}
+}

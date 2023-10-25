@@ -4,9 +4,9 @@ export class UseCartItem {
 			JSON.parse(sessionStorage.getItem('info item')) || []
 		let selectedProducts = []
 
-		if (cartForm?.cartFormDeliveryProducts) {
-			cartForm.cartFormDeliveryInfo.removeChild(
-				cartForm.cartFormDeliveryProducts
+		if (cartForm.cartFormDelivery?.cartFormDeliveryProducts) {
+			cartForm.cartFormDelivery.cartFormDeliveryInfo.removeChild(
+				cartForm.cartFormDelivery.cartFormDeliveryProducts
 			)
 		}
 
@@ -53,11 +53,11 @@ export class UseCartItem {
 		if (
 			!sessionItemsInfo.filter(itemInfo => itemInfo.isSelectedProduct).length
 		) {
-			cartForm.cartFormDeliveryProducts = null
+			cartForm.cartFormDelivery.cartFormDeliveryProducts = null
 			return
 		}
 
-		cartForm.drawDeliveryProducts(selectedProducts)
+		cartForm.cartFormDelivery.drawDeliveryProducts(selectedProducts)
 	}
 
 	_handleHoverCompanyInfo = (e, variant, cartItem) => {

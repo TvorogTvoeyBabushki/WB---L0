@@ -10,6 +10,7 @@
 	background-color: $white;
 	box-shadow: 0 4px 10px rgba($black, 0.2);
 	border-radius: 16px;
+	overflow-y: auto;
 
 	.payment_cards_header {
 		display: flex;
@@ -81,5 +82,6 @@
 		flex-grow: 1;
 		align-items: flex-end;
 		max-width: 164px;
+		margin-top: 20px;
 	}
 }

@@ -21,10 +21,33 @@ export class PaymentCards {
 		this.paymentCardInfo = paymentCardInfo
 	}
 
-	#handleClickChoose = () => {
+	#handleClickChoose = (cartPaymentWayInfo, cartPaymentWayStyles) => {
 		sessionStorage.setItem(
 			'payment card',
 			JSON.stringify(this.getPaymentCardInfo)
+		)
+
+		cartPaymentWayInfo.innerHTML = `
+			<div id="cart__payment-way-image">
+				<img src="${this.getPaymentCardInfo.src}" alt="${this.getPaymentCardInfo.name}" />
+			</div>
+			<div id="cart__payment-way-data">
+				<span>${this.getPaymentCardInfo.cardNumber}</span>
+				<span>${this.getPaymentCardInfo.date}</span>
+			</div>
+		`
+		const cartPaymentWayImageCard = cartPaymentWayInfo.querySelector(
+			'#cart__payment-way-image'
+		)
+		const cartPaymentWayDataCard = cartPaymentWayInfo.querySelector(
+			'#cart__payment-way-data'
+		)
+
+		cartPaymentWayImageCard.classList.add(
+			cartPaymentWayStyles.cart_payment_way_image
+		)
+		cartPaymentWayDataCard.classList.add(
+			cartPaymentWayStyles.cart_payment_way_data
 		)
 		this.#handleClickClose()
 	}
@@ -56,7 +79,7 @@ export class PaymentCards {
 		)
 	}
 
-	draw() {
+	draw(cartPaymentWayInfo, cartPaymentWayStyles) {
 		this.element = renderService.htmlToElement(template)
 		this.paymentCardsHeader = this.element.querySelector(
 			'#payment-cards__header'
@@ -109,9 +132,8 @@ export class PaymentCards {
 		)
 
 		this.paymentCardBtnClose.addEventListener('click', this.#handleClickClose)
-		this.paymentCardsBtnChoose.element.addEventListener(
-			'click',
-			this.#handleClickChoose
+		this.paymentCardsBtnChoose.element.addEventListener('click', () =>
+			this.#handleClickChoose(cartPaymentWayInfo, cartPaymentWayStyles)
 		)
 
 		this.#addStyle()
