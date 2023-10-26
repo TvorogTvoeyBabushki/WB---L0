@@ -1,9 +1,16 @@
 export class UseCartItem {
-	_handleClickCheckbox = (cartItem, cartForm, variant, cartItemCheckbox) => {
+	_handleClickCheckbox = (
+		cartItem,
+		cartForm,
+		variant,
+		cartItemCheckbox,
+		cartSidebar
+	) => {
 		const sessionItemsInfo =
 			JSON.parse(sessionStorage.getItem('info item')) || []
 		let selectedProducts = []
 
+		cartSidebar.priceWrapper && cartSidebar.priceWrapper.remove()
 		if (cartForm.cartFormDelivery?.cartFormDeliveryProducts) {
 			cartForm.cartFormDelivery.cartFormDeliveryInfo.removeChild(
 				cartForm.cartFormDelivery.cartFormDeliveryProducts
@@ -47,8 +54,10 @@ export class UseCartItem {
 			;(variant === 'selected' || variant == 'all') &&
 				cartItemCheckbox.addStyles('active')
 		}
-
 		sessionStorage.setItem('info item', JSON.stringify(sessionItemsInfo))
+
+		cartSidebar.priceWrapper && cartSidebar.drawPriceWrapper()
+		cartSidebar.isActiveCheckbox && cartSidebar.handleClickCheckbox('checkbox')
 
 		if (
 			!sessionItemsInfo.filter(itemInfo => itemInfo.isSelectedProduct).length

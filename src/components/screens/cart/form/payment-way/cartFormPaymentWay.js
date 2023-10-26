@@ -7,12 +7,16 @@ import { PaymentCards } from '../payment-cards/paymentCards'
 import styles from './cartFormPaymentWay.module.scss'
 
 export class CartFormPaymentWay {
-	#handleClickShowPaymentCards(cartPaymentWayInfo) {
+	handleClickShowPaymentCards(cartPaymentWayCard, cartSidebarPaymentCard) {
 		this.cartFormModal = new Modal()
 		this.cartFormPaymentCards = new PaymentCards()
 		document.body.append(
 			this.cartFormModal.draw(
-				this.cartFormPaymentCards.draw(cartPaymentWayInfo, styles)
+				this.cartFormPaymentCards.draw(
+					cartPaymentWayCard,
+					styles,
+					cartSidebarPaymentCard
+				)
 			)
 		)
 	}
@@ -20,31 +24,33 @@ export class CartFormPaymentWay {
 	#addStyles() {
 		this.element.classList.add(styles.cart_payment_way)
 		this.cartPaymentWayHeader.classList.add(styles.cart_payment_way_header)
-		this.cartPaymentWayInfo.classList.add(styles.cart_payment_way_info)
-		this.cartPaymentWayImageCard.classList.add(styles.cart_payment_way_image)
-		this.cartPaymentWayDataCard.classList.add(styles.cart_payment_way_data)
+		this.cartPaymentWayCard.classList.add(styles.cart_payment_way_card)
+		this.cartPaymentWayCardImage.classList.add(styles.card_image)
+		this.cartPaymentWayCardData.classList.add(styles.card_data)
 	}
 
-	draw() {
+	draw(cartSidebar) {
 		this.element = RenderService.htmlToElement(template)
 		this.cartPaymentWayHeader = this.element.querySelector(
-			'#cart__payment-way-header'
+			'#cart__payment-way__header'
 		)
-		this.cartPaymentWayBtn = this.cartPaymentWayHeader.querySelector(
-			'#cart__payment-way-btn'
+		this.cartPaymentWayBtn =
+			this.cartPaymentWayHeader.querySelector('#btn__payment-way')
+		this.cartPaymentWayCard = this.element.querySelector(
+			'#cart__payment-way__card'
 		)
-		this.cartPaymentWayInfo = this.element.querySelector(
-			'#cart__payment-way-info'
+		this.cartPaymentWayCardImage = this.cartPaymentWayCard.querySelector(
+			'#cart__payment-way__card-image'
 		)
-		this.cartPaymentWayImageCard = this.cartPaymentWayInfo.querySelector(
-			'#cart__payment-way-image'
-		)
-		this.cartPaymentWayDataCard = this.cartPaymentWayInfo.querySelector(
-			'#cart__payment-way-data'
+		this.cartPaymentWayCardData = this.cartPaymentWayCard.querySelector(
+			'#cart__payment-way__card-data'
 		)
 
 		this.cartPaymentWayBtn.addEventListener('click', () =>
-			this.#handleClickShowPaymentCards(this.cartPaymentWayInfo)
+			this.handleClickShowPaymentCards(
+				this.cartPaymentWayCard,
+				cartSidebar.paymentCard
+			)
 		)
 
 		this.#addStyles()

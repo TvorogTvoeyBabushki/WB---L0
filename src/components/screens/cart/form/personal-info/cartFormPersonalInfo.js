@@ -2,15 +2,75 @@ import RenderService from '@/services/render.service'
 
 import { Field } from '@/components/ui/field/field'
 
-import { stringPattern, validEmail } from '@/utils/regex'
-
+import { useCartFormPersonalInfo } from './useCartFormPersonalInfo'
 import template from './cartFormPersonalInfo.template.html?raw'
 import styles from './cartFormPersonalInfo.module.scss'
 
 const fields = ['Имя', 'Фамилия', 'Почта', 'Телефон', 'ИНН']
 
-export class CartFormPersonal {
-	#drawValidate(id, children, variant) {
+export class CartFormPersonal extends useCartFormPersonalInfo {
+	#personalData
+
+	constructor() {
+		super()
+
+		this.#personalData = [
+			{
+				label: 'Имя',
+				value: '',
+				isValidate: false,
+				id: 'cart__personal-info__validate-name',
+				validationText: 'Укажите имя'
+			},
+			{
+				label: 'Фамилия',
+				value: '',
+				isValidate: false,
+				id: 'cart__personal-info__validate-surname',
+				validationText: 'Введите фамилию'
+			},
+			{
+				label: 'Почта',
+				value: '',
+				isValidate: false,
+				id: 'cart__personal-info__validate-email',
+				validationText: 'Укажите электронную почту'
+			},
+			{
+				label: 'Телефон',
+				value: '',
+				isValidate: false,
+				id: 'cart__personal-info__validate-telephone',
+				validationText: 'Укажите номер телефона'
+			},
+			{
+				label: 'ИНН',
+				value: '',
+				isValidate: false,
+				id: 'cart__personal-info__validate-inn',
+				validationText: 'Укажите ИНН'
+			}
+		]
+	}
+
+	resetFields() {
+		this.#personalData.forEach(personalData => {
+			personalData.value = ''
+			personalData.isValidate = false
+		})
+
+		const formEl = this.element.querySelector('form')
+		const fieldsEl = formEl.querySelectorAll('input')
+		fieldsEl.forEach(field => {
+			field.value = ''
+		})
+	}
+
+	getPersonalData() {
+		return this.#personalData
+	}
+
+	drawValidate = (id, children, variant) => {
 		const validate = document.createElement('div')
 		validate.append(children)
 		validate.setAttribute('id', id)
@@ -25,7 +85,7 @@ export class CartFormPersonal {
 		})
 	}
 
-	#removeValidate(id, variant) {
+	#removeValidate = (id, variant) => {
 		this.element.querySelector(`#${id}`) &&
 			this.element.querySelector(`#${id}`).remove()
 
@@ -36,195 +96,17 @@ export class CartFormPersonal {
 		})
 	}
 
-	#handleChangeField = (e, variant) => {
-		if (variant.toLowerCase() === 'имя') {
-			const numberPattern = /[0-9]/g
-			const symbolPattern = /[^a-zа-яё0-9\s]/gi
-
-			if (
-				numberPattern.test(e.target.value) ||
-				symbolPattern.test(e.target.value)
-			) {
-				this.#drawValidate(
-					'cart__personal-info__validate-name',
-					'Укажите имя',
-					variant
-				)
-			} else {
-				this.#removeValidate('cart__personal-info__validate-name', variant)
-			}
-		}
-
-		if (variant.toLowerCase() === 'фамилия') {
-			const numberPattern = /[0-9]/g
-			const symbolPattern = /[^a-zа-яё0-9\s]/gi
-
-			if (
-				numberPattern.test(e.target.value) ||
-				symbolPattern.test(e.target.value)
-			) {
-				this.#drawValidate(
-					'cart__personal-info__validate-surname',
-					'Укажите фамилию',
-					variant
-				)
-			} else {
-				this.#removeValidate('cart__personal-info__validate-surname', variant)
-			}
-		}
-
-		if (variant.toLowerCase() === 'почта') {
-			if (!validEmail.test(e.target.value) && e.target.value.length) {
-				this.#drawValidate(
-					'cart__personal-info__validate-email',
-					'Проверьте адрес электронной почты',
-					variant
-				)
-			} else {
-				this.#removeValidate('cart__personal-info__validate-email', variant)
-			}
-		}
-
-		if (variant.toLowerCase() === 'телефон') {
-			if (
-				e.target.value.replace(stringPattern, '').length < 11 &&
-				e.target.value.replace(stringPattern, '').length
-			) {
-				this.#drawValidate(
-					'cart__personal-info__validate-telephone',
-					'Формат: +9 999 999 99 99',
-					variant
-				)
-			} else if (e.target.value.replace(stringPattern, '').length === 11) {
-				this.#removeValidate('cart__personal-info__validate-telephone', variant)
-			}
-		}
-
-		if (variant.toLowerCase() === 'инн') {
-			if (e.target.value.length < 12 && e.target.value.length) {
-				this.#drawValidate(
-					'cart__personal-info__validate-inn',
-					'Проверьте ИНН',
-					variant
-				)
-			} else if (e.target.value.length === 12) {
-				this.#removeValidate('cart__personal-info__validate-inn', variant)
-			}
-		}
-	}
-
-	#handleInputField = (e, variant) => {
-		if (variant.toLowerCase() === 'имя') {
-			const numberPattern = /[0-9]/g
-			const symbolPattern = /[^a-zа-яё0-9\s]/gi
-
-			if (
-				!(
-					symbolPattern.test(e.target.value) ||
-					numberPattern.test(e.target.value)
-				)
-			) {
-				this.#removeValidate('cart__personal-info__validate-name', variant)
-			}
-		}
-
-		if (variant.toLowerCase() === 'фамилия') {
-			const numberPattern = /[0-9]/g
-			const symbolPattern = /[^a-zа-яё0-9\s]/gi
-
-			if (
-				!(
-					symbolPattern.test(e.target.value) ||
-					numberPattern.test(e.target.value)
-				)
-			) {
-				this.#removeValidate('cart__personal-info__validate-surname', variant)
-			}
-		}
-
-		if (variant.toLowerCase() === 'почта') {
-			if (validEmail.test(e.target.value) || !e.target.value.length) {
-				this.#removeValidate('cart__personal-info__validate-email', variant)
-			}
-		}
-
-		if (variant.toLowerCase() === 'телефон') {
-			const prefixNumber = str => {
-				if (str === '7') {
-					return '+7'
+	#fillingData = (variant, value, isValidate) => {
+		if (
+			this.#personalData.filter(personalData => personalData.label === variant)
+				.length
+		) {
+			this.#personalData.forEach(personalData => {
+				if (personalData.label === variant) {
+					personalData.value = value
+					personalData.isValidate = isValidate
 				}
-				if (str === '8') {
-					return '8'
-				}
-				if (str === '9') {
-					return '+7 9'
-				}
-				return '+7'
-			}
-
-			const fieldValue = e.target.value.replace(/\D+/g, '')
-			const maxLength = 30
-			let result = ''
-
-			for (let i = 0; i < fieldValue.length && i < maxLength; i++) {
-				switch (i) {
-					case 0:
-						result += prefixNumber(fieldValue[i])
-						continue
-					case 1:
-						result += ' '
-						break
-					case 4:
-						result += ' '
-						break
-					case 7:
-						result += ' '
-						break
-					case 9:
-						result += ' '
-						break
-					default:
-						break
-				}
-				result += fieldValue[i]
-			}
-			e.target.value = result
-
-			if (e.target.value.replace(stringPattern, '').length > 11) {
-				this.#drawValidate(
-					'cart__personal-info__validate-telephone',
-					'Формат: +9 999 999 99 99',
-					variant
-				)
-			} else if (
-				e.target.value.replace(stringPattern, '').length === 11 ||
-				!e.target.value.replace(stringPattern, '').length
-			) {
-				this.#removeValidate('cart__personal-info__validate-telephone', variant)
-			}
-		}
-
-		if (variant.toLowerCase() === 'инн') {
-			const fieldValue = e.target.value.replace(stringPattern, '')
-			e.target.value = fieldValue
-
-			if (e.target.value.length > 12) {
-				this.#drawValidate(
-					'cart__personal-info__validate-inn',
-					'Проверьте ИНН',
-					variant
-				)
-			} else if (e.target.value.length === 12 || !e.target.value.length) {
-				this.#removeValidate('cart__personal-info__validate-inn', variant)
-			}
-		}
-
-		const targetEl = e.target
-		const parentTargetEl = targetEl.parentNode
-		if (e.target.value.trim().length) {
-			parentTargetEl.classList.add(styles.active)
-		} else {
-			parentTargetEl.classList.remove(styles.active)
+			})
 		}
 	}
 
@@ -277,10 +159,16 @@ export class CartFormPersonal {
 			})
 
 			this[field].element.addEventListener('input', e =>
-				this.#handleInputField(e, field)
+				this._handleInputField(
+					e,
+					field,
+					this.#removeValidate,
+					this.#fillingData,
+					styles
+				)
 			)
 			this[field].element.addEventListener('change', e =>
-				this.#handleChangeField(e, field)
+				this._handleChangeField(e, field, this.drawValidate, this.#fillingData)
 			)
 		})
 

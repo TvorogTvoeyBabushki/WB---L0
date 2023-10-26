@@ -7,7 +7,10 @@ import template from './cartFormDelivery.template.html?raw'
 import styles from './cartFormDelivery.module.scss'
 
 export class CartFormDelivery {
-	#handleClickShowDeliveryAddresses(cartFormDeliveryPoint) {
+	handleClickShowDeliveryAddresses(
+		cartFormDeliveryPoint,
+		cartSidebarDeliveryPoint
+	) {
 		this.cartFormModal = new Modal()
 		this.cartFormDeliveryAddresses = new DeliveryAddresses()
 		document.body.append(
@@ -15,13 +18,14 @@ export class CartFormDelivery {
 				this.cartFormDeliveryAddresses.draw(
 					'pick-up point',
 					cartFormDeliveryPoint,
-					styles
+					styles,
+					cartSidebarDeliveryPoint
 				)
 			)
 		)
 	}
 
-	#handleHoverDeliveryRefusalInfo = (e, variant) => {
+	handleHoverDeliveryRefusalInfo = (e, variant) => {
 		if (variant === 'enter') {
 			this.#drawDeliveryRefusalInfoWrapper(e.target, variant)
 		} else {
@@ -72,7 +76,7 @@ export class CartFormDelivery {
 			this.cartFormDeliveryProductAmount.append(cartItem.quantity)
 			this.cartFormDeliveryProductImageElWrapper.append(
 				this.cartFormDeliveryProductImageEl,
-				this.cartFormDeliveryProductAmount
+				cartItem.quantity > 1 ? this.cartFormDeliveryProductAmount : ''
 			)
 			this.cartFormDeliveryProductImageElWrapperLink.append(
 				this.cartFormDeliveryProductImageElWrapper
@@ -91,7 +95,7 @@ export class CartFormDelivery {
 		this.cartFormDeliveryProducts.classList.add(styles.cart_delivery_products)
 	}
 
-	draw() {
+	draw(selectedProducts, cartSidebar) {
 		this.element = RenderService.htmlToElement(template)
 		this.cartFormDeliveryHeader = this.element.querySelector(
 			'#cart__delivery-header'
@@ -107,7 +111,6 @@ export class CartFormDelivery {
 		this.cartFormDeliveryPointRating = this.cartFormDeliveryPoint.querySelector(
 			'#cart__delivery-point__rating'
 		)
-
 		this.cartFormDeliveryRefusal = this.element.querySelector(
 			'#cart__delivery-refusal'
 		)
@@ -116,15 +119,32 @@ export class CartFormDelivery {
 				'#cart__delivery-refusal__info'
 			)
 
+		const cartItemsData = JSON.parse(localStorage.getItem('cart items')) || []
+
+		selectedProducts.checkboxSelectAll.addStyles('active')
+		cartItemsData.forEach(cartItem => {
+			selectedProducts._cartItemComponents.forEach(cartItemComponent => {
+				cartItem.id === cartItemComponent.id &&
+					cartItemComponent.cartItem.handleClickCheckbox(
+						cartItem,
+						selectedProducts.cartForm,
+						'all'
+					)
+			})
+		})
+
 		this.cartFormDeliveryBtn.addEventListener('click', () =>
-			this.#handleClickShowDeliveryAddresses(this.cartFormDeliveryPoint)
+			this.handleClickShowDeliveryAddresses(this.cartFormDeliveryPoint, {
+				deliveryHeader: cartSidebar.deliveryHeader,
+				deliveryAddress: cartSidebar.deliveryAddress
+			})
 		)
 
 		this.cartFormDeliveryRefusalInfo.addEventListener('mouseenter', e =>
-			this.#handleHoverDeliveryRefusalInfo(e, 'enter')
+			this.handleHoverDeliveryRefusalInfo(e, 'enter')
 		)
 		this.cartFormDeliveryRefusalInfo.addEventListener('mouseleave', e =>
-			this.#handleHoverDeliveryRefusalInfo(e, 'leave')
+			this.handleHoverDeliveryRefusalInfo(e, 'leave')
 		)
 
 		this.#addStyles()

@@ -5,11 +5,12 @@ import { UseCartItem } from './useCartItem'
 import styles from './cartItem.module.scss'
 
 export class CartItem extends UseCartItem {
-	constructor(variant) {
+	constructor(variant, cartSidebar) {
 		super()
 
 		this.cartItemWrapper = document.createElement('div')
 		this.variant = variant
+		this.cartSidebar = cartSidebar
 	}
 
 	handleClickCheckbox = (cartItem, cartForm, variant) => {
@@ -17,7 +18,8 @@ export class CartItem extends UseCartItem {
 			cartItem,
 			cartForm,
 			variant,
-			this.cartItemCheckbox
+			this.cartItemCheckbox,
+			this.cartSidebar
 		)
 	}
 
@@ -50,7 +52,11 @@ export class CartItem extends UseCartItem {
 			this.variant === 'selected' ? document.createElement('div') : ''
 		this.cartItemInfoCompany =
 			this.variant === 'selected' ? document.createElement('div') : ''
-		this.cartItemPrice = new CartItemPrice(this.variant)
+		this.cartItemPrice = new CartItemPrice(
+			this.variant,
+			this.cartSidebar,
+			this.handleClickCheckbox
+		)
 		this.cartItemCheckbox = this.variant === 'selected' ? new Checkbox() : ''
 
 		if (cartItem.description) {
@@ -117,12 +123,7 @@ export class CartItem extends UseCartItem {
 		)
 		this.cartItemWrapper.append(
 			this.cartItem,
-			this.cartItemPrice.draw(
-				cartItem,
-				cartForm,
-				this.handleClickCheckbox,
-				header
-			)
+			this.cartItemPrice.draw(cartItem, cartForm, header)
 		)
 
 		this.cartItemCheckbox.element?.addEventListener('click', () =>

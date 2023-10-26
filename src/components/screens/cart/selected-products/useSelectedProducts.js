@@ -4,9 +4,10 @@ export class UseSelectedProducts {
 	#cartItemsData
 	#sessionItemsInfo
 
-	constructor(header, cartForm) {
+	constructor(header, cartForm, cartSidebar) {
 		this.header = header
 		this.cartForm = cartForm
+		this.cartSidebar = cartSidebar
 
 		this.#cartItemsData = []
 		this.#sessionItemsInfo = []
@@ -35,9 +36,12 @@ export class UseSelectedProducts {
 		this.#sessionItemsInfo.forEach(itemInfo => {
 			itemInfo.isSelectedProduct = false
 			itemInfo.isSelectedAll
-				? ((itemInfo.isSelectedAll = false), checkboxSelectAll.addStyles(''))
+				? ((itemInfo.isSelectedAll = false),
+				  checkboxSelectAll.addStyles(''),
+				  (this.cartSidebar.btnPayment.element.disabled = true))
 				: ((itemInfo.isSelectedAll = true),
-				  checkboxSelectAll.addStyles('active'))
+				  checkboxSelectAll.addStyles('active'),
+				  (this.cartSidebar.btnPayment.element.disabled = false))
 		})
 		sessionStorage.setItem('info item', JSON.stringify(this.#sessionItemsInfo))
 
@@ -61,11 +65,21 @@ export class UseSelectedProducts {
 
 		localStorage.setItem('cart items', JSON.stringify(updateCartItems))
 
-		selectedProductsWrapper.innerHTML = ''
-		this._drawSelectedProductsWrapper(selectedProductsWrapper)
 		this.header.draw().innerHTML = ''
+		selectedProductsWrapper.innerHTML = ''
+		this.cartSidebar.priceWrapper.remove()
+
 		this.header.draw()
+		this._drawSelectedProductsWrapper(selectedProductsWrapper)
+		this.cartSidebar.drawPriceWrapper()
+
 		this.cartItem.handleClickCheckbox(cartItem, this.cartForm, 'delete')
+		this.cartSidebar.isActiveCheckbox &&
+			this.cartSidebar.handleClickCheckbox('delete')
+
+		if (!updateCartItems.length) {
+			this.cartSidebar.btnPayment.element.disabled = true
+		}
 	}
 
 	_drawSelectedProductsWrapper(selectedProductsWrapper) {
@@ -76,7 +90,7 @@ export class UseSelectedProducts {
 		this._cartItemComponents = []
 
 		this.#cartItemsData.forEach(cartItem => {
-			this.cartItem = new CartItem('selected')
+			this.cartItem = new CartItem('selected', this.cartSidebar)
 
 			this.#sessionItemsInfo.forEach(itemInfo => {
 				if (itemInfo.id === cartItem.id) {
@@ -88,7 +102,13 @@ export class UseSelectedProducts {
 				this.#sessionItemsInfo.push({
 					id: cartItem.id,
 					quantity: 1,
-					amount: cartItem.price.discount
+					amount: {
+						discount: cartItem.price.discount,
+						base: cartItem.price.base
+					},
+					isSelectedProduct: false,
+					isSelectedAll: true,
+					src: cartItem.src
 				})
 			}
 

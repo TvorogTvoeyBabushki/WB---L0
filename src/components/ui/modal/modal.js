@@ -12,6 +12,18 @@ export class Modal {
 		this.element = RenderService.htmlToElement(template)
 		this.element.append(children)
 
+		document.addEventListener('click', e => {
+			if (e.target === this.element) {
+				this.element.remove()
+			}
+		})
+
+		document.removeEventListener('click', e => {
+			if (e.target === this.element) {
+				this.element.remove()
+			}
+		})
+
 		this.#addStyles()
 		return this.element
 	}

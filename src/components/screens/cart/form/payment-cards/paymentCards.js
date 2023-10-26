@@ -21,34 +21,36 @@ export class PaymentCards {
 		this.paymentCardInfo = paymentCardInfo
 	}
 
-	#handleClickChoose = (cartPaymentWayInfo, cartPaymentWayStyles) => {
-		sessionStorage.setItem(
-			'payment card',
-			JSON.stringify(this.getPaymentCardInfo)
-		)
-
-		cartPaymentWayInfo.innerHTML = `
-			<div id="cart__payment-way-image">
+	#handleClickChoose = (
+		cartPaymentWayCard,
+		cartPaymentWayStyles,
+		cartSidebarPaymentCard
+	) => {
+		cartSidebarPaymentCard.innerHTML = `
+			<div>
 				<img src="${this.getPaymentCardInfo.src}" alt="${this.getPaymentCardInfo.name}" />
 			</div>
-			<div id="cart__payment-way-data">
+			<span>${this.getPaymentCardInfo.cardNumber}</span>
+		`
+
+		cartPaymentWayCard.innerHTML = `
+			<div id="cart__payment-way__card-image">
+				<img src="${this.getPaymentCardInfo.src}" alt="${this.getPaymentCardInfo.name}" />
+			</div>
+			<div id="cart__payment-way__card-data">
 				<span>${this.getPaymentCardInfo.cardNumber}</span>
 				<span>${this.getPaymentCardInfo.date}</span>
 			</div>
 		`
-		const cartPaymentWayImageCard = cartPaymentWayInfo.querySelector(
-			'#cart__payment-way-image'
+		const cartPaymentWayImageCard = cartPaymentWayCard.querySelector(
+			'#cart__payment-way__card-image'
 		)
-		const cartPaymentWayDataCard = cartPaymentWayInfo.querySelector(
-			'#cart__payment-way-data'
+		const cartPaymentWayDataCard = cartPaymentWayCard.querySelector(
+			'#cart__payment-way__card-data'
 		)
 
-		cartPaymentWayImageCard.classList.add(
-			cartPaymentWayStyles.cart_payment_way_image
-		)
-		cartPaymentWayDataCard.classList.add(
-			cartPaymentWayStyles.cart_payment_way_data
-		)
+		cartPaymentWayImageCard.classList.add(cartPaymentWayStyles.card_image)
+		cartPaymentWayDataCard.classList.add(cartPaymentWayStyles.card_data)
 		this.#handleClickClose()
 	}
 
@@ -79,7 +81,7 @@ export class PaymentCards {
 		)
 	}
 
-	draw(cartPaymentWayInfo, cartPaymentWayStyles) {
+	draw(cartPaymentWayCard, cartPaymentWayStyles, cartSidebarPaymentCard) {
 		this.element = renderService.htmlToElement(template)
 		this.paymentCardsHeader = this.element.querySelector(
 			'#payment-cards__header'
@@ -133,7 +135,11 @@ export class PaymentCards {
 
 		this.paymentCardBtnClose.addEventListener('click', this.#handleClickClose)
 		this.paymentCardsBtnChoose.element.addEventListener('click', () =>
-			this.#handleClickChoose(cartPaymentWayInfo, cartPaymentWayStyles)
+			this.#handleClickChoose(
+				cartPaymentWayCard,
+				cartPaymentWayStyles,
+				cartSidebarPaymentCard
+			)
 		)
 
 		this.#addStyle()

@@ -29,9 +29,12 @@ export class DeliveryAddressesWrapperItems {
 		this.deliveryAddressesRadioBtnComponents.forEach(
 			deliveryAddressesRadioBtnComponent => {
 				deliveryAddressesRadioBtnComponent.component.addStyles('')
+				deliveryAddressesRadioBtnComponent.isActive = false
 
 				if (deliveryAddressesRadioBtnComponent.id === index) {
 					deliveryAddressesRadioBtnComponent.component.addStyles('active')
+					deliveryAddressesRadioBtnComponent.isActive = true
+
 					this.deliveryAddressInfo = {
 						way,
 						deliveryAddress
@@ -43,7 +46,6 @@ export class DeliveryAddressesWrapperItems {
 
 	#handleClickChangeDeliveryWay(
 		way,
-		cartFormDeliveryPoint,
 		wrapper,
 		deliveryAddressesBtnChoose,
 		deliveryAddressesWay,
@@ -55,7 +57,6 @@ export class DeliveryAddressesWrapperItems {
 			? this._drawDeliveryAddressesWrapperItems(
 					wrapper,
 					'courier',
-					cartFormDeliveryPoint,
 					deliveryAddressesBtnChoose,
 					deliveryAddressesWay,
 					styles
@@ -63,7 +64,6 @@ export class DeliveryAddressesWrapperItems {
 			: this._drawDeliveryAddressesWrapperItems(
 					wrapper,
 					'pick-up point',
-					cartFormDeliveryPoint,
 					deliveryAddressesBtnChoose,
 					deliveryAddressesWay,
 					styles
@@ -71,7 +71,13 @@ export class DeliveryAddressesWrapperItems {
 	}
 
 	#handleClickDeleteAddress(index, wrapper, deliveryAddressesBtnChoose) {
-		deliveryAddressesBtnChoose.element.disabled = true
+		this.deliveryAddressesRadioBtnComponents.forEach(
+			deliveryAddressesRadioBtnComponent => {
+				deliveryAddressesRadioBtnComponent.isActive &&
+					deliveryAddressesRadioBtnComponent.id === index &&
+					(deliveryAddressesBtnChoose.element.disabled = true)
+			}
+		)
 
 		this.deliveryAddressesItemComponents.forEach(
 			deliveryAddressesItemComponent => {
@@ -85,7 +91,6 @@ export class DeliveryAddressesWrapperItems {
 	_drawDeliveryAddressesWrapperItems(
 		wrapper,
 		way,
-		cartFormDeliveryPoint,
 		deliveryAddressesBtnChoose,
 		deliveryAddressesWay,
 		styles
@@ -103,7 +108,6 @@ export class DeliveryAddressesWrapperItems {
 			btnEl.addEventListener('click', () =>
 				this.#handleClickChangeDeliveryWay(
 					way,
-					cartFormDeliveryPoint,
 					wrapper,
 					deliveryAddressesBtnChoose,
 					deliveryAddressesWay,
@@ -181,7 +185,8 @@ export class DeliveryAddressesWrapperItems {
 			})
 			this.deliveryAddressesRadioBtnComponents.push({
 				id: index,
-				component: this.deliveryAddressesRadioBtn
+				component: this.deliveryAddressesRadioBtn,
+				isActive: index === 0 ? true : false
 			})
 
 			this.deliveryAddressesRadioBtn.element.addEventListener('change', () =>

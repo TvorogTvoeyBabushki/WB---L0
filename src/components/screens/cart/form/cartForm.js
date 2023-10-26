@@ -11,20 +11,17 @@ export class CartFrom {
 		this.cartFormDelivery = new CartFormDelivery()
 		this.cartFormPaymentWay = new CartFormPaymentWay()
 		this.cartFormPersonal = new CartFormPersonal()
-
-		sessionStorage.removeItem('payment card')
-		sessionStorage.removeItem('delivery address')
 	}
 
 	#addStyles() {
 		this.element.classList.add(styles.cart_form)
 	}
 
-	draw(wrapper) {
+	draw(wrapper, selectedProducts, cartSidebar) {
 		this.element = RenderService.htmlToElement(template)
 		this.element.append(
-			this.cartFormDelivery.draw(),
-			this.cartFormPaymentWay.draw(),
+			this.cartFormDelivery.draw(selectedProducts, cartSidebar),
+			this.cartFormPaymentWay.draw(cartSidebar),
 			this.cartFormPersonal.draw()
 		)
 

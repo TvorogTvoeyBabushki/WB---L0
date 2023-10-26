@@ -11,8 +11,8 @@ import styles from './selectedProducts.module.scss'
 export class SelectedProducts extends UseSelectedProducts {
 	#sessionItemsInfo
 
-	constructor(header, cartForm) {
-		super(header, cartForm)
+	constructor(header, cartForm, cartSidebar) {
+		super(header, cartForm, cartSidebar)
 
 		this.#sessionItemsInfo = []
 		sessionStorage.removeItem('info item')
@@ -36,7 +36,7 @@ export class SelectedProducts extends UseSelectedProducts {
 				0
 			)
 			const amount = this.#sessionItemsInfo.reduce(
-				(acc, itemInfo) => acc + itemInfo.amount,
+				(acc, itemInfo) => acc + itemInfo.amount.discount,
 				0
 			)
 

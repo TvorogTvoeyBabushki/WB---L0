@@ -5,25 +5,19 @@ export class UseCartItemPrice {
 		cartItem,
 		quantity
 	) {
-		if (
-			sessionItemsInfo.filter(itemInfo => itemInfo.id === cartItem.id).length
-		) {
-			sessionItemsInfo.forEach(itemInfo => {
-				if (itemInfo.id === cartItem.id) {
-					itemInfo.quantity = quantity
-					itemInfo.amount =
-						variant === 'decrement'
-							? itemInfo.amount - cartItem.price.discount
-							: itemInfo.amount + cartItem.price.discount
-				}
-			})
-		} else {
-			sessionItemsInfo.push({
-				id: cartItem.id,
-				quantity: quantity,
-				amount: cartItem.price.discount * quantity
-			})
-		}
+		sessionItemsInfo.forEach(itemInfo => {
+			if (itemInfo.id === cartItem.id) {
+				itemInfo.quantity = quantity
+				itemInfo.amount.discount =
+					variant === 'decrement'
+						? itemInfo.amount.discount - cartItem.price.discount
+						: itemInfo.amount.discount + cartItem.price.discount
+				itemInfo.amount.base =
+					variant === 'decrement'
+						? itemInfo.amount.base - cartItem.price.base
+						: itemInfo.amount.base + cartItem.price.base
+			}
+		})
 
 		sessionStorage.setItem('info item', JSON.stringify(sessionItemsInfo))
 	}

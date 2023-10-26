@@ -29,11 +29,11 @@
 		}
 	}
 
-	.cart_payment_way_info {
+	.cart_payment_way_card {
 		display: flex;
 		align-items: center;
 
-		.cart_payment_way_image {
+		.card_image {
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -48,7 +48,7 @@
 			}
 		}
 
-		.cart_payment_way_data {
+		.card_data {
 			display: flex;
 			gap: 12px;
 		}
