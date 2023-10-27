@@ -10,13 +10,11 @@ import template from './cartSidebar.template.html?raw'
 import styles from './cartSidebar.module.scss'
 
 export class CartSidebar extends CartSidebarPriceWrapper {
-	#amountDiscountPrice
 	#validate
 
 	constructor() {
 		super()
 
-		this.#amountDiscountPrice = 0
 		this.#validate = new Set()
 	}
 
@@ -39,6 +37,13 @@ export class CartSidebar extends CartSidebarPriceWrapper {
 		if (this.#validate.size === 5) {
 			alert('Успех')
 			cartFormPersonal.resetFields()
+		} else {
+			const formEl = cartFormPersonal.element.querySelector('form')
+			formEl.scrollIntoView({
+				behavior: 'smooth',
+				block: 'center',
+				inline: 'nearest'
+			})
 		}
 	}
 
@@ -55,7 +60,7 @@ export class CartSidebar extends CartSidebarPriceWrapper {
 			}
 			this.paymentCheckbox.addStyles('active')
 			this.btnPayment.element.innerHTML = `Оплатить ${currency(
-				this.#amountDiscountPrice
+				this._amountDiscountPrice
 			)} сом`
 		}
 	}
@@ -77,7 +82,7 @@ export class CartSidebar extends CartSidebarPriceWrapper {
 	}
 
 	drawPriceWrapper() {
-		this._drawPriceWrapper(this.#amountDiscountPrice)
+		this._drawPriceWrapper()
 		this.#addStyles()
 	}
 

@@ -73,4 +73,26 @@
 			}
 		}
 	}
+
+	@media (max-width: 760px) {
+		padding: 0 16px;
+	}
+
+	@media (max-width: 600px) {
+		> div:first-child {
+			> label {
+				> input {
+					background-color: transparent;
+				}
+			}
+		}
+
+		> div:last-child {
+			padding-top: 13px;
+		}
+
+		&.show {
+			margin-bottom: 48px;
+		}
+	}
 }

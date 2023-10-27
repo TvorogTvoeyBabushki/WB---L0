@@ -60,4 +60,8 @@
 		color: $gray;
 		line-height: 1.23;
 	}
+
+	@media (max-width: 760px) {
+		padding: 16px 16px 24px;
+	}
 }

@@ -15,11 +15,9 @@
 			border: 1px solid rgba($white, 0.45);
 			border-radius: 8px;
 			transition: border-color 0.2s ease-in-out;
-
-			> img {
-				width: 28px;
-				height: 24px;
-			}
+			background-image: url('/burger.svg');
+			background-repeat: no-repeat;
+			background-position: center;
 
 			&:hover {
 				border-color: rgba($white, 1);
@@ -28,6 +26,7 @@
 
 		> a {
 			> h1 {
+				width: 110px;
 				font-size: 1.45rem;
 				font-weight: 600;
 				color: $white;
@@ -127,6 +126,21 @@
 					top: -5px;
 					right: 1px;
 				}
+			}
+		}
+	}
+
+	@media (max-width: 760px) {
+		.wrapper {
+			// .burger {
+			// 	width: 28px;
+			// 	height: 28px;
+			// 	background-image: url('/burger-mobile.svg');
+			// 	border: none;
+			// }
+
+			.menu {
+				display: none;
 			}
 		}
 	}

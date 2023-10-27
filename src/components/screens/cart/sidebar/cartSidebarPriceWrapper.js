@@ -5,6 +5,7 @@ export class CartSidebarPriceWrapper {
 
 	constructor() {
 		this.#sessionItemsInfo = []
+		this._amountDiscountPrice = 0
 	}
 
 	#parseSessionItemsInfo() {
@@ -15,7 +16,7 @@ export class CartSidebarPriceWrapper {
 		}
 	}
 
-	_drawPriceWrapper(amountDiscountPrice) {
+	_drawPriceWrapper() {
 		this.#parseSessionItemsInfo()
 		const quantity =
 			this.#sessionItemsInfo.reduce((acc, itemInfo) => {
@@ -25,13 +26,16 @@ export class CartSidebarPriceWrapper {
 					return acc
 				}
 			}, 0) || 0
-		amountDiscountPrice = this.#sessionItemsInfo.reduce((acc, itemInfo) => {
-			if (itemInfo.isSelectedProduct) {
-				return acc + itemInfo.amount.discount
-			} else {
-				return acc
-			}
-		}, 0)
+		this._amountDiscountPrice = this.#sessionItemsInfo.reduce(
+			(acc, itemInfo) => {
+				if (itemInfo.isSelectedProduct) {
+					return acc + itemInfo.amount.discount
+				} else {
+					return acc
+				}
+			},
+			0
+		)
 		const amountBasePrice =
 			this.#sessionItemsInfo.reduce((acc, itemInfo) => {
 				if (itemInfo.isSelectedProduct) {
@@ -40,7 +44,7 @@ export class CartSidebarPriceWrapper {
 					return acc
 				}
 			}, 0) || 0
-		const amountDiscount = amountBasePrice - amountDiscountPrice
+		const amountDiscount = amountBasePrice - this._amountDiscountPrice
 
 		this.priceWrapper = document.createElement('div')
 		this.priceHeader = document.createElement('div')
@@ -51,7 +55,7 @@ export class CartSidebarPriceWrapper {
 
 		this.priceHeader.innerHTML = `
       <span>Итого</span>
-      <span>${currency(amountDiscountPrice)}<span>сом</span></span>
+      <span>${currency(this._amountDiscountPrice)}<span>сом</span></span>
     `
 		this.priceBase.innerHTML = `
       <span>${quantity} товара</span>

@@ -11,8 +11,8 @@ import styles from './selectedProducts.module.scss'
 export class SelectedProducts extends UseSelectedProducts {
 	#sessionItemsInfo
 
-	constructor(header, cartForm, cartSidebar) {
-		super(header, cartForm, cartSidebar)
+	constructor(header, cartForm, cartSidebar, footer) {
+		super(header, cartForm, cartSidebar, footer)
 
 		this.#sessionItemsInfo = []
 		sessionStorage.removeItem('info item')

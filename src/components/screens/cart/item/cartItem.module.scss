@@ -76,6 +76,7 @@
 						position: absolute;
 						top: 100%;
 						right: -120px;
+						z-index: 1;
 
 						> h4 {
 							font-weight: 700;
@@ -95,6 +96,64 @@
 			> div {
 				flex-grow: 1;
 				color: $gray;
+			}
+		}
+	}
+
+	@media (max-width: 600px) {
+		padding-bottom: 44px;
+		position: relative;
+
+		.cart_item {
+			position: relative;
+			flex: none;
+
+			> input {
+				margin-top: 0;
+				background-color: $white;
+				position: absolute;
+				top: calc(0% + 4px);
+				left: calc(0% + 4px);
+			}
+
+			> a {
+				> img {
+					width: 80px;
+					height: 106px;
+				}
+			}
+
+			> div {
+				padding-top: 24px;
+				width: 100%;
+				max-width: 275px;
+
+				> a {
+					> h3 {
+						font-size: 0.875rem;
+						line-height: 1.43;
+					}
+				}
+
+				.item_description {
+					.size {
+						> span:first-child {
+							display: none;
+						}
+						> span:last-child {
+							padding: 2px 4px 4px;
+							background-color: $white;
+							border-radius: 6px;
+							position: absolute;
+							left: calc(0% + 4px);
+							bottom: calc(0% + 4px);
+						}
+					}
+				}
+
+				.item_company {
+					display: none;
+				}
 			}
 		}
 	}

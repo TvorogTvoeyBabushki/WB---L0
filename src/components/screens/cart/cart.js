@@ -8,14 +8,16 @@ import { CartFrom } from './form/cartForm'
 import styles from './cart.module.scss'
 
 export class Cart {
-	constructor(header) {
+	constructor(header, footer) {
 		this.header = header
+		this.footer = footer
 		this.cartForm = new CartFrom()
 		this.cartSidebar = new CartSidebar()
 		this.selectedProducts = new SelectedProducts(
 			this.header,
 			this.cartForm,
-			this.cartSidebar
+			this.cartSidebar,
+			this.footer
 		)
 		this.missedProducts = new MissedProducts()
 	}

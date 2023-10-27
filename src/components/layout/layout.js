@@ -2,13 +2,12 @@ import RenderService from '@/services/render.service'
 
 import template from './layout.template.html?raw'
 import styles from './layout.module.scss'
-import { Footer } from './footer/footer'
 
 export class Layout {
-	constructor(header, children) {
+	constructor(header, children, footer) {
 		this.header = header
 		this.children = children
-		this.footer = new Footer()
+		this.footer = footer
 	}
 
 	#addStyle() {

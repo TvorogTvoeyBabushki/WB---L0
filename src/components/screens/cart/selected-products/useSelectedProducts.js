@@ -4,10 +4,11 @@ export class UseSelectedProducts {
 	#cartItemsData
 	#sessionItemsInfo
 
-	constructor(header, cartForm, cartSidebar) {
+	constructor(header, cartForm, cartSidebar, footer) {
 		this.header = header
 		this.cartForm = cartForm
 		this.cartSidebar = cartSidebar
+		this.footer = footer
 
 		this.#cartItemsData = []
 		this.#sessionItemsInfo = []
@@ -59,8 +60,12 @@ export class UseSelectedProducts {
 
 	#handleDeleteCartItem = (cartItem, selectedProductsWrapper) => {
 		this.#parseCartItemsDataLS()
+		this.#parseSessionItemsInfo()
 		const updateCartItems = this.#cartItemsData.filter(
 			cartItemData => cartItemData.id !== cartItem.id
+		)
+		const updateSessionItemsInfo = this.#sessionItemsInfo.filter(
+			itemInfo => itemInfo.id !== cartItem.id
 		)
 
 		localStorage.setItem('cart items', JSON.stringify(updateCartItems))
@@ -69,7 +74,9 @@ export class UseSelectedProducts {
 		selectedProductsWrapper.innerHTML = ''
 		this.cartSidebar.priceWrapper.remove()
 
-		this.header.draw()
+		this.header.draw(updateSessionItemsInfo)
+		this.footer.tabbar.element &&
+			this.footer.tabbar.drawAmountItems(updateSessionItemsInfo)
 		this._drawSelectedProductsWrapper(selectedProductsWrapper)
 		this.cartSidebar.drawPriceWrapper()
 
@@ -113,7 +120,7 @@ export class UseSelectedProducts {
 			}
 
 			selectedProductsWrapper.append(
-				this.cartItem.draw(cartItem, this.cartForm, this.header)
+				this.cartItem.draw(cartItem, this.cartForm, this.header, this.footer)
 			)
 
 			this.btnDeleteProduct =

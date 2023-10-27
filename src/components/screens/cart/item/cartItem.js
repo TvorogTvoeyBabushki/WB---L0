@@ -39,7 +39,7 @@ export class CartItem extends UseCartItem {
 			this.cartItemInfoCompany.classList.add(styles.item_company)
 	}
 
-	draw(cartItem, cartForm, header) {
+	draw(cartItem, cartForm, header, footer) {
 		const sessionItemsInfo =
 			JSON.parse(sessionStorage.getItem('info item')) || []
 		this.cartItem = document.createElement('div')
@@ -65,12 +65,12 @@ export class CartItem extends UseCartItem {
 			for (const key in cartItem.description) {
 				this[key] = document.createElement('span')
 
-				this[key].append(
-					key === 'color'
-						? `Цвет: ${cartItem.description[key]}`
-						: `Размер: ${cartItem.description[key]}`
-				)
+				this[key].innerHTML = `
+					<span>${key === 'color' ? 'Цвет:' : 'Размер:'}</span> 
+					<span>${cartItem.description[key]}</span>
+				`
 				this.cartItemInfoDescription.append(this[key])
+				this[key].classList.add(styles[key])
 			}
 		}
 
@@ -123,7 +123,7 @@ export class CartItem extends UseCartItem {
 		)
 		this.cartItemWrapper.append(
 			this.cartItem,
-			this.cartItemPrice.draw(cartItem, cartForm, header)
+			this.cartItemPrice.draw(cartItem, cartForm, header, footer)
 		)
 
 		this.cartItemCheckbox.element?.addEventListener('click', () =>

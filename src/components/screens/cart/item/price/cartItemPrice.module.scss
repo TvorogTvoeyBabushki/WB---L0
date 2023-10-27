@@ -39,6 +39,7 @@
 		align-items: flex-end;
 		gap: 5px;
 		flex-grow: 1;
+		width: 110px;
 
 		> div:first-child {
 			font-size: 1.25rem;
@@ -103,6 +104,60 @@
 					> span:first-child {
 						color: $light-gray;
 					}
+				}
+			}
+		}
+	}
+
+	@media (max-width: 600px) {
+		flex-grow: 0;
+
+		> div:first-child {
+			flex-direction: row;
+			align-items: center;
+			gap: 16px;
+			width: auto;
+
+			position: absolute;
+			bottom: 0;
+			left: 0;
+
+			.quantity_btn_wrapper {
+				padding: 3px 10.5px 5px;
+				width: auto;
+				font-size: 0.875rem;
+				line-height: 1.43;
+
+				> button {
+					width: auto;
+				}
+
+				> span {
+					display: inline-block;
+					width: 32px;
+					text-align: center;
+					margin-top: 1px;
+				}
+			}
+		}
+
+		.price {
+			width: max-content;
+			flex-direction: row;
+			align-items: flex-start;
+			position: absolute;
+			top: 0;
+			left: calc(0% + 88px);
+
+			> div:first-child {
+				font-size: inherit;
+				line-height: inherit;
+			}
+
+			> div:last-child {
+				margin-top: 5px;
+				> div {
+					right: -90px;
 				}
 			}
 		}

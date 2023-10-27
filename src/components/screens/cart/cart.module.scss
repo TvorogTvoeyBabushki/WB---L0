@@ -6,6 +6,7 @@
 
 	.wrapper {
 		display: flex;
+		flex-wrap: wrap;
 		gap: 32px;
 
 		.left_item {
@@ -22,9 +23,43 @@
 		}
 
 		> aside {
-			flex: 0 1 31%;
+			flex: 1 1 31%;
 			padding: 22px 0 50px;
 			position: relative;
+		}
+	}
+
+	@media (max-width: 920px) {
+		.wrapper {
+			gap: 24px 0;
+
+			.left_item {
+				padding-bottom: 0;
+			}
+
+			> aside {
+				padding: 0 0 40px;
+				flex: 1 1 100%;
+			}
+		}
+	}
+
+	@media (max-width: 760px) {
+		.wrapper {
+			.left_item {
+				padding-top: 15px;
+
+				> h1 {
+					margin-bottom: 16px;
+					padding: 0 16px;
+					// font-size: 1.25rem;
+					// line-height: 1.4;
+				}
+			}
+
+			> aside {
+				padding: 0 16px 40px;
+			}
 		}
 	}
 }

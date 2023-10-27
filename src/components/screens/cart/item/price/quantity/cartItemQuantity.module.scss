@@ -5,6 +5,10 @@
 	font-size: 0.8125rem;
 	color: $orange;
 	line-height: 1.23;
+
+	@media (max-width: 600px) {
+		margin-top: 0;
+	}
 }
 
 .panel {
@@ -93,5 +97,12 @@
 
 	&.missed {
 		margin-top: 0;
+	}
+
+	@media (max-width: 600px) {
+		margin-top: 0;
+		align-self: center;
+		// width: 88px;
+		// padding: 0 14px 0 0;
 	}
 }
