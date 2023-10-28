@@ -106,7 +106,7 @@ export class CartItemPrice extends UseCartItemPrice {
 	}
 
 	#drawQuantity(cartItem, cartForm, header, footer) {
-		this.cartItemQuantity = new CartItemQuantity(this.variant)
+		this.cartItemQuantity = new CartItemQuantity()
 
 		if (this.variant === 'selected') {
 			this.#drawQuantityBtnElsWrapper(cartItem, cartForm, header, footer)
@@ -114,6 +114,8 @@ export class CartItemPrice extends UseCartItemPrice {
 		}
 
 		this.cartItemQuantity.drawQuantityPanel(cartItem, this.quantityWrapper)
+		this.variant === 'missed' &&
+			this.quantityWrapper.classList.add(styles.missed)
 
 		return this.quantityWrapper
 	}

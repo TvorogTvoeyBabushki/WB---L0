@@ -64,10 +64,46 @@
 			> div {
 				display: flex;
 			}
+
+			> hr {
+				display: none;
+				margin: 0;
+			}
 		}
 	}
 
 	@media (max-width: 760px) {
 		padding: 0 16px;
+	}
+
+	@media (max-width: 600px) {
+		margin-bottom: 34px;
+
+		> div:last-child {
+			gap: 0;
+
+			&.show {
+				padding-top: 0;
+
+				> div {
+					display: inline-block;
+				}
+
+				> div:first-child {
+					padding-top: 11px;
+				}
+
+				> div:not(div:first-child) {
+					padding-top: 11px;
+				}
+
+				> hr {
+					display: block;
+					margin-top: 16px;
+					border: none;
+					border-top: 1px solid rgba($black, 0.1);
+				}
+			}
+		}
 	}
 }

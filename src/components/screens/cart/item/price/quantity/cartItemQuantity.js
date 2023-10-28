@@ -4,12 +4,10 @@ import styles from './cartItemQuantity.module.scss'
 export class CartItemQuantity extends UseCartItemPrice {
 	#favoriteItemsData
 
-	constructor(variant) {
+	constructor() {
 		super()
 
 		this.#favoriteItemsData = []
-		this.variant = variant
-
 		this.#parseFavoriteItemsDataLS()
 	}
 
@@ -71,7 +69,6 @@ export class CartItemQuantity extends UseCartItemPrice {
 
 		quantityWrapper.append(this.quantityPanel)
 		this.quantityPanel.classList.add(styles.panel)
-		this.variant === 'missed' && this.quantityPanel.classList.add(styles.missed)
 
 		this.btnFavorite = this.quantityPanel.querySelector('#btn__cart-favorite')
 		this.btnFavorite.addEventListener('click', () => {

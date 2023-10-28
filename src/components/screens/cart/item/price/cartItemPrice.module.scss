@@ -109,6 +109,10 @@
 		}
 	}
 
+	.missed {
+		// margin-top: 0;
+	}
+
 	@media (max-width: 600px) {
 		flex-grow: 0;
 
@@ -146,7 +150,7 @@
 			flex-direction: row;
 			align-items: flex-start;
 			position: absolute;
-			top: 0;
+			top: calc(0% + 13px);
 			left: calc(0% + 88px);
 
 			> div:first-child {
@@ -159,6 +163,13 @@
 				> div {
 					right: -90px;
 				}
+			}
+		}
+
+		> div:first-child {
+			&.missed {
+				left: auto;
+				right: 0;
 			}
 		}
 	}

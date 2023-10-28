@@ -37,6 +37,11 @@ export class Tabbar {
 						: sessionItemsInfo.reduce(
 								(acc, itemInfo) => acc + itemInfo.quantity,
 								0
+						  ) > 99
+						? '99'
+						: sessionItemsInfo.reduce(
+								(acc, itemInfo) => acc + itemInfo.quantity,
+								0
 						  )
 				}</div>
         <svg

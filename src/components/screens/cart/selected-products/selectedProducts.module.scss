@@ -88,7 +88,23 @@
 		}
 
 		> div:last-child {
-			padding-top: 13px;
+			padding-top: 11px;
+			gap: 16px;
+
+			> div:first-child {
+				padding-top: 0px;
+
+				> div:last-child {
+					> div:last-child {
+						top: 0;
+					}
+				}
+			}
+
+			> div:not(div:first-child) {
+				border-top: 1px solid rgba(0, 0, 0, 0.1);
+				padding-top: 11px;
+			}
 		}
 
 		&.show {

@@ -85,19 +85,6 @@
 				}
 			}
 		}
-
-		&_missed {
-			> a {
-				> img {
-					filter: grayscale(1);
-				}
-			}
-
-			> div {
-				flex-grow: 1;
-				color: $gray;
-			}
-		}
 	}
 
 	@media (max-width: 600px) {
@@ -153,6 +140,54 @@
 
 				.item_company {
 					display: none;
+				}
+			}
+
+			&_missed {
+				> div {
+					padding-top: 0;
+
+					.item_description {
+						.size {
+							> span:last-child {
+								color: $black;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.cart_item_missed {
+	.cart_item {
+		> a {
+			> img {
+				filter: grayscale(1);
+			}
+		}
+
+		> div {
+			flex-grow: 1;
+			color: $gray;
+		}
+	}
+
+	@media (max-width: 600px) {
+		width: max-content;
+		padding-bottom: 34px;
+
+		.cart_item {
+			> div {
+				padding-top: 0;
+
+				.item_description {
+					.size {
+						> span:last-child {
+							color: $black;
+						}
+					}
 				}
 			}
 		}

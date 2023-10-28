@@ -31,7 +31,7 @@ export class CartItem extends UseCartItem {
 		this.cartItemWrapper.classList.add(styles.cart_item_wrapper)
 		this.cartItem.classList.add(styles.cart_item)
 		this.variant === 'missed' &&
-			this.cartItem.classList.add(styles.cart_item_missed)
+			this.cartItemWrapper.classList.add(styles.cart_item_missed)
 		this.cartItemInfoDescription?.classList.add(styles.item_description)
 		this.cartItemInfoAddress &&
 			this.cartItemInfoAddress.classList.add(styles.item_address)

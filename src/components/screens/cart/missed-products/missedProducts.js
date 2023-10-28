@@ -76,10 +76,14 @@ export class MissedProducts {
 	#drawMissedProductsWrapper() {
 		this.#parseCartMissedItemsDataLS()
 
-		this.#cartMissedItemsData.forEach(cartItem => {
+		this.#cartMissedItemsData.forEach((cartItem, index) => {
 			this.cartItem = new CartItem('missed')
+			const hrEl = document.createElement('hr')
 
-			this.missedProductsWrapper.append(this.cartItem.draw(cartItem))
+			this.missedProductsWrapper.append(
+				index !== 0 ? hrEl : '',
+				this.cartItem.draw(cartItem)
+			)
 			this.missedProductsWrapper.classList.add(styles.show)
 
 			this.btnDeleteMissedProduct =

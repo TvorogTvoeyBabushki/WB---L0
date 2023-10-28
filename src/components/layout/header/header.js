@@ -50,6 +50,11 @@ export class Header {
 					: sessionItemsInfo.reduce(
 							(acc, itemInfo) => acc + itemInfo.quantity,
 							0
+					  ) > 99
+					? '99'
+					: sessionItemsInfo.reduce(
+							(acc, itemInfo) => acc + itemInfo.quantity,
+							0
 					  )
 			)
 			this.btnCart.append(this.amountItemsWrapper)
