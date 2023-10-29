@@ -84,4 +84,16 @@
 		max-width: 164px;
 		margin-top: 20px;
 	}
+
+	@media (max-width: 760px) {
+		width: 100%;
+		max-height: inherit;
+		border-radius: 0;
+		padding: 16px;
+
+		.payment_cards_btn_choose {
+			max-width: 100%;
+			margin-top: 329px;
+		}
+	}
 }

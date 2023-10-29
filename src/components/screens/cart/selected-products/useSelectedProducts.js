@@ -70,11 +70,11 @@ export class UseSelectedProducts {
 
 		localStorage.setItem('cart items', JSON.stringify(updateCartItems))
 
-		this.header.draw().innerHTML = ''
+		// this.header.draw().innerHTML = ''
 		selectedProductsWrapper.innerHTML = ''
 		this.cartSidebar.priceWrapper.remove()
 
-		this.header.draw(updateSessionItemsInfo)
+		this.header.drawAmountItems(updateSessionItemsInfo)
 		this.footer.tabbar.element &&
 			this.footer.tabbar.drawAmountItems(updateSessionItemsInfo)
 		this._drawSelectedProductsWrapper(selectedProductsWrapper)

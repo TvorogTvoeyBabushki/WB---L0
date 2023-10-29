@@ -44,32 +44,6 @@ export class DeliveryAddressesWrapperItems {
 		)
 	}
 
-	#handleClickChangeDeliveryWay(
-		way,
-		wrapper,
-		deliveryAddressesBtnChoose,
-		deliveryAddressesWay,
-		styles
-	) {
-		wrapper.innerHTML = ''
-
-		way === 'pick-up point'
-			? this._drawDeliveryAddressesWrapperItems(
-					wrapper,
-					'courier',
-					deliveryAddressesBtnChoose,
-					deliveryAddressesWay,
-					styles
-			  )
-			: this._drawDeliveryAddressesWrapperItems(
-					wrapper,
-					'pick-up point',
-					deliveryAddressesBtnChoose,
-					deliveryAddressesWay,
-					styles
-			  )
-	}
-
 	#handleClickDeleteAddress(index, wrapper, deliveryAddressesBtnChoose) {
 		this.deliveryAddressesRadioBtnComponents.forEach(
 			deliveryAddressesRadioBtnComponent => {
@@ -88,33 +62,10 @@ export class DeliveryAddressesWrapperItems {
 		)
 	}
 
-	_drawDeliveryAddressesWrapperItems(
-		wrapper,
-		way,
-		deliveryAddressesBtnChoose,
-		deliveryAddressesWay,
-		styles
-	) {
+	_drawDeliveryAddressesWrapperItems(wrapper, way, deliveryAddressesBtnChoose) {
 		if (deliveryAddressesBtnChoose) {
 			deliveryAddressesBtnChoose.element.disabled = false
 		}
-
-		deliveryAddressesWay.querySelectorAll('button').forEach((btnEl, index) => {
-			;(way === 'pick-up point' && index === 0) ||
-			(way === 'courier' && index === 1)
-				? (btnEl.classList.add(styles.active), (btnEl.disabled = true))
-				: (btnEl.classList.remove(styles.active), (btnEl.disabled = false))
-
-			btnEl.addEventListener('click', () =>
-				this.#handleClickChangeDeliveryWay(
-					way,
-					wrapper,
-					deliveryAddressesBtnChoose,
-					deliveryAddressesWay,
-					styles
-				)
-			)
-		})
 
 		this.deliveryAddressData =
 			way === 'pick-up point'

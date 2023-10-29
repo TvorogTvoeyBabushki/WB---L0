@@ -45,12 +45,12 @@ export class CartItemPrice extends UseCartItemPrice {
 			)
 		}
 
-		header.draw().innerHTML = ''
+		// header.draw().innerHTML = ''
 		this.quantityBtnElsWrapper.innerHTML = ''
 		this.price.innerHTML = ''
 		this.cartSidebar.priceWrapper.remove()
 
-		header.draw(sessionItemsInfo)
+		header.drawAmountItems(sessionItemsInfo)
 		footer.tabbar.element && footer.tabbar.drawAmountItems(sessionItemsInfo)
 		this.#drawQuantityBtnElsWrapper(cartItem, cartForm, header, footer)
 		this.#drawPrice(cartItem)
@@ -156,6 +156,12 @@ export class CartItemPrice extends UseCartItemPrice {
 		this.priceWrapper.append(
 			this.#drawQuantity(cartItem, cartForm, header, footer),
 			this.variant === 'selected' ? this.#drawPrice(cartItem) : ''
+		)
+
+		this.cartItemQuantity.drawQuantityValidate(
+			cartItem,
+			this.#quantity,
+			this.quantityWrapper
 		)
 
 		this.#addStyles()

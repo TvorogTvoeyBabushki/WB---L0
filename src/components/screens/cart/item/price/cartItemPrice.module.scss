@@ -31,6 +31,12 @@
 				}
 			}
 		}
+
+		&.missed {
+			> div {
+				margin-top: 0;
+			}
+		}
 	}
 
 	.price {
@@ -107,10 +113,6 @@
 				}
 			}
 		}
-	}
-
-	.missed {
-		// margin-top: 0;
 	}
 
 	@media (max-width: 600px) {

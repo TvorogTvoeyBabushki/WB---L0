@@ -64,4 +64,15 @@
 	@media (max-width: 760px) {
 		padding: 16px 16px 24px;
 	}
+
+	@media (max-width: 460px) {
+		.cart_payment_way_header {
+			margin-bottom: 8px;
+
+			> h2 {
+				font-size: 1.25rem;
+				line-height: 1.4;
+			}
+		}
+	}
 }

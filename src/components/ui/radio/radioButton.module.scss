@@ -1,8 +1,8 @@
 @import '@/assets/styles/variables';
 
 .radio_btn {
-	width: 16px;
-	height: 16px;
+	width: 16.5px;
+	height: 16.5px;
 	visibility: hidden;
 	position: relative;
 	cursor: pointer;
@@ -10,23 +10,13 @@
 	&::before {
 		content: '';
 		display: block;
+		width: 16.5px;
 		height: 100%;
 		border-radius: 50%;
 		background-color: $white;
 		visibility: visible;
 		border: 1px solid rgba($black, 0.2);
-	}
-
-	&::after {
-		content: '';
-		display: block;
-		height: 6px;
-		width: 6px;
-		border-radius: 50%;
-		background-color: $white;
-		position: absolute;
-		top: 31%;
-		right: 31%;
+		background: url('/dot.svg') center no-repeat;
 	}
 
 	&.active {

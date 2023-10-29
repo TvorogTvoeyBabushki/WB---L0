@@ -157,6 +157,11 @@ export class CartFormPersonal extends useCartFormPersonalInfo {
 				component: this.fieldWrapper,
 				isShowLabel: false
 			})
+			this.#personalData.forEach(personalData => {
+				if (personalData.label === field) {
+					personalData.component = this[field]
+				}
+			})
 
 			this[field].element.addEventListener('input', e =>
 				this._handleInputField(

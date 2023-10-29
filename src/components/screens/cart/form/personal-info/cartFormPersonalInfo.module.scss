@@ -77,4 +77,27 @@
 	@media (max-width: 760px) {
 		padding: 16px 16px 24px;
 	}
+
+	@media (max-width: 460px) {
+		> h2 {
+			font-size: 1.25rem;
+			line-height: 1.4;
+		}
+
+		> form {
+			margin-top: 0;
+			gap: 0;
+
+			.cart_personal_info_name,
+			.cart_personal_info_other {
+				flex-wrap: wrap;
+				gap: 0;
+
+				> div {
+					flex: 1 1 100%;
+					height: 70px;
+				}
+			}
+		}
+	}
 }

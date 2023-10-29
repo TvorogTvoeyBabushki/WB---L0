@@ -28,9 +28,9 @@ export class Tabbar {
 		this.#parseCartItemsDataLS()
 
 		if (this.#amountItems.length) {
-			this.tabbarCart = this.element.querySelector('#tabbar__cart')
+			this.cart = this.element.querySelector('#tabbar__cart')
 
-			this.tabbarCart.innerHTML = `
+			this.cart.innerHTML = `
         <div>${
 					!sessionItemsInfo.length
 						? this.#amountItems.length
@@ -84,7 +84,7 @@ export class Tabbar {
         </svg>
       `
 		} else {
-			this.tabbarCart.removeChild(this.tabbarCart.querySelector('div'))
+			this.cart.removeChild(this.cart.querySelector('div'))
 		}
 	}
 

@@ -78,6 +78,33 @@ export class DeliveryAddresses extends DeliveryAddressesWrapperItems {
 		document.body.removeChild(modal)
 	}
 
+	#handleClickChangeDeliveryWay() {
+		this.deliveryAddressesWrapperItems.innerHTML = ''
+
+		this.way === 'pick-up point'
+			? (this._drawDeliveryAddressesWrapperItems(
+					this.deliveryAddressesWrapperItems,
+					'courier',
+					this.deliveryAddressesBtnChoose
+			  ),
+			  (this.way = 'courier'))
+			: (this._drawDeliveryAddressesWrapperItems(
+					this.deliveryAddressesWrapperItems,
+					'pick-up point',
+					this.deliveryAddressesBtnChoose
+			  ),
+			  (this.way = 'pick-up point'))
+
+		this.deliveryAddressesWay
+			.querySelectorAll('button')
+			.forEach((btnEl, index) => {
+				;(this.way === 'pick-up point' && index === 0) ||
+				(this.way === 'courier' && index === 1)
+					? (btnEl.classList.add(styles.active), (btnEl.disabled = true))
+					: (btnEl.classList.remove(styles.active), (btnEl.disabled = false))
+			})
+	}
+
 	#addStyle() {
 		this.element.classList.add(styles.delivery_addresses)
 		this.deliveryAddressesHeader.classList.add(styles.delivery_addresses_header)
@@ -121,12 +148,23 @@ export class DeliveryAddresses extends DeliveryAddressesWrapperItems {
 			this.deliveryAddressesBtnChoose.draw('Выбрать')
 		)
 
+		this.deliveryAddressesWay
+			.querySelectorAll('button')
+			.forEach((btnEl, index) => {
+				index === 0
+					? (btnEl.classList.add(styles.active), (btnEl.disabled = true))
+					: (btnEl.classList.remove(styles.active), (btnEl.disabled = false))
+
+				btnEl.addEventListener('click', () =>
+					this.#handleClickChangeDeliveryWay()
+				)
+			})
+
+		this.way = way
 		this._drawDeliveryAddressesWrapperItems(
 			this.deliveryAddressesWrapperItems,
-			way,
-			this.deliveryAddressesBtnChoose,
-			this.deliveryAddressesWay,
-			styles
+			this.way,
+			this.deliveryAddressesBtnChoose
 		)
 
 		this.deliveryAddressesBtnClose.addEventListener(

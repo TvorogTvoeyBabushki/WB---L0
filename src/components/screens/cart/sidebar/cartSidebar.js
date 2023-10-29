@@ -14,11 +14,11 @@ export class CartSidebar extends CartSidebarPriceWrapper {
 
 	constructor() {
 		super()
-
-		this.#validate = new Set()
 	}
 
 	#handleClickPayment = cartFormPersonal => {
+		this.#validate = new Set()
+
 		cartFormPersonal.getPersonalData().forEach(personalData => {
 			if (!personalData.value.length || !personalData.isValidate) {
 				cartFormPersonal.drawValidate(
@@ -26,24 +26,26 @@ export class CartSidebar extends CartSidebarPriceWrapper {
 					personalData.validationText,
 					personalData.label
 				)
-				this.#validate.has(personalData.label) &&
-					this.#validate.delete(personalData.label)
+				this.#validate.add(personalData.label)
+
+				if ([...this.#validate][0] === personalData.label) {
+					personalData.component.element.scrollIntoView({
+						behavior: 'smooth',
+						block: 'center',
+						inline: 'nearest'
+					})
+				}
+
 				return
 			}
 
-			this.#validate.add(personalData.label)
+			this.#validate.has(personalData.label) &&
+				this.#validate.delete(personalData.label)
 		})
 
-		if (this.#validate.size === 5) {
+		if (!this.#validate.size) {
 			alert('Успех')
 			cartFormPersonal.resetFields()
-		} else {
-			const formEl = cartFormPersonal.element.querySelector('form')
-			formEl.scrollIntoView({
-				behavior: 'smooth',
-				block: 'center',
-				inline: 'nearest'
-			})
 		}
 	}
 

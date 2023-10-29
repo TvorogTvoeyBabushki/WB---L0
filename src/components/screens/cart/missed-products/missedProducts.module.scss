@@ -57,17 +57,17 @@
 			display: none;
 		}
 
+		> hr {
+			display: none;
+			margin: 0;
+		}
+
 		&.show {
 			border-top: 1px solid rgba($black, 0.1);
 			padding-top: 11px;
 
 			> div {
 				display: flex;
-			}
-
-			> hr {
-				display: none;
-				margin: 0;
 			}
 		}
 	}
@@ -105,5 +105,9 @@
 				}
 			}
 		}
+	}
+
+	@media (max-width: 460px) {
+		width: 100vw;
 	}
 }

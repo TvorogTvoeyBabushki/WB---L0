@@ -51,14 +51,22 @@
 
 				> h1 {
 					margin-bottom: 16px;
-					padding: 0 16px;
-					// font-size: 1.25rem;
-					// line-height: 1.4;
+					padding-left: 16px;
 				}
 			}
 
 			> aside {
 				padding: 0 16px 40px;
+			}
+		}
+	}
+
+	@media (max-width: 760px) {
+		.wrapper {
+			.left_item {
+				> h1 {
+					font-size: 1.37rem;
+				}
 			}
 		}
 	}

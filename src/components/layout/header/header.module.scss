@@ -111,8 +111,10 @@
 					width: 28px;
 					height: 28px;
 				}
+			}
 
-				.amount_items {
+			.cart {
+				> div {
 					padding: 1px 5px 2px;
 					border-radius: 16px;
 					background-color: $orange;
@@ -126,21 +128,77 @@
 					top: -5px;
 					right: 1px;
 				}
+
+				> svg {
+					height: 28px;
+				}
 			}
 		}
 	}
 
 	@media (max-width: 760px) {
 		.wrapper {
-			// .burger {
-			// 	width: 28px;
-			// 	height: 28px;
-			// 	background-image: url('/burger-mobile.svg');
-			// 	border: none;
-			// }
-
 			.menu {
 				display: none;
+			}
+		}
+	}
+
+	@media (max-width: 460px) {
+		.wrapper {
+			.burger {
+				width: 28px;
+				height: 28px;
+				background-image: url('/burger-mobile.svg');
+				border: none;
+			}
+
+			> a {
+				> h1 {
+					width: max-content;
+					font-size: 1.35rem;
+					line-height: 1.1;
+				}
+			}
+
+			.search {
+				flex-grow: 0;
+				padding-right: 0;
+				background-color: transparent;
+
+				> input {
+					display: none;
+					position: absolute;
+					left: 0;
+				}
+
+				> svg {
+					position: relative;
+					z-index: 110;
+				}
+
+				&:active {
+					> input {
+						display: block;
+
+						&::placeholder {
+							color: transparent;
+						}
+					}
+				}
+
+				&:hover {
+					background-color: transparent;
+				}
+
+				&:focus-within {
+					background-color: transparent;
+
+					> input {
+						background-color: rgba($white, 1);
+						display: block;
+					}
+				}
 			}
 		}
 	}

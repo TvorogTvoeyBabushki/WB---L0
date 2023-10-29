@@ -123,8 +123,9 @@
 					color: $black;
 
 					position: absolute;
-					bottom: calc(-98% + 12px);
+					top: calc(100% - 11px);
 					left: -17px;
+					z-index: 1;
 				}
 			}
 		}
@@ -242,12 +243,12 @@
 		}
 
 		> div:nth-child(2) {
-			flex: 1 1 48%;
+			flex: 0 1 48%;
 			display: flex;
 		}
 
 		> div:nth-child(3) {
-			flex: 0 1 48%;
+			flex: 1 1 48%;
 		}
 
 		.delivery_header,
@@ -267,8 +268,8 @@
 					display: inline-block;
 
 					> div {
-						left: calc(0% + 10px);
-						bottom: calc(-79% + 12px);
+						top: calc(100% - 16px);
+						left: -10px;
 					}
 				}
 			}
@@ -281,6 +282,29 @@
 
 		.btn_payment_wrapper {
 			margin-top: 8px;
+		}
+	}
+
+	@media (max-width: 460px) {
+		> div:nth-child(2) {
+			flex: 1 1 100%;
+		}
+
+		.delivery_refusal {
+			align-items: flex-start;
+
+			> svg {
+				margin-top: 4px;
+			}
+
+			> div {
+				> span {
+					> div {
+						top: calc(100% - 12px);
+						left: 0;
+					}
+				}
+			}
 		}
 	}
 }

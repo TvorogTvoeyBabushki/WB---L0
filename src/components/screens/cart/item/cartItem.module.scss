@@ -90,6 +90,7 @@
 	@media (max-width: 600px) {
 		padding-bottom: 44px;
 		position: relative;
+		gap: 0;
 
 		.cart_item {
 			position: relative;
@@ -158,6 +159,24 @@
 			}
 		}
 	}
+
+	@media (max-width: 460px) {
+		.cart_item {
+			width: 100%;
+
+			> div {
+				> a {
+					> h3 {
+						overflow: hidden;
+						display: -webkit-box;
+						-webkit-box-orient: vertical;
+						-webkit-line-clamp: 2;
+						white-space: pre-wrap;
+					}
+				}
+			}
+		}
+	}
 }
 
 .cart_item_missed {
@@ -191,5 +210,9 @@
 				}
 			}
 		}
+	}
+
+	@media (max-width: 460px) {
+		width: 100%;
 	}
 }

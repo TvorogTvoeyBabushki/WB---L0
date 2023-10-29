@@ -147,4 +147,65 @@
 	@media (max-width: 760px) {
 		padding: 16px 16px 24px;
 	}
+
+	@media (max-width: 600px) {
+		.cart_delivery_refusal {
+			> div {
+				> span:last-child {
+					> div {
+						right: -50%;
+					}
+				}
+			}
+		}
+	}
+
+	@media (max-width: 460px) {
+		.cart_delivery_header {
+			> h2 {
+				font-size: 1.25rem;
+				line-height: 1.4;
+			}
+		}
+
+		.cart_delivery_info {
+			> div:is(.cart_delivery_point, div) {
+				flex-direction: column;
+				gap: 0;
+			}
+
+			div.cart_delivery_products {
+				flex-direction: column;
+				gap: 12px;
+			}
+		}
+
+		.cart_delivery_refusal {
+			width: 100%;
+			max-width: 90%;
+			height: auto;
+
+			> svg {
+				width: 36px;
+			}
+
+			> div {
+				display: inline-block;
+				padding-top: 0;
+				position: relative;
+
+				> span {
+					display: inline-block;
+
+					&:last-child {
+						position: static;
+
+						> div {
+							left: -13%;
+						}
+					}
+				}
+			}
+		}
+	}
 }
