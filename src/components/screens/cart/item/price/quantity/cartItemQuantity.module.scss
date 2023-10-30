@@ -12,12 +12,21 @@
 }
 
 .panel {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
 	justify-content: space-between;
+	-ms-flex-item-align: end;
 	align-self: flex-end;
 	margin-top: 16px;
 	width: 56px;
 	opacity: 0;
+
+	-webkit-transition: opacity 0.4s ease-in-out;
+
+	-o-transition: opacity 0.4s ease-in-out;
 
 	transition: opacity 0.4s ease-in-out;
 
@@ -35,6 +44,8 @@
 
 		> svg {
 			> path {
+				-webkit-transition: stroke 0.2s ease-in-out;
+				-o-transition: stroke 0.2s ease-in-out;
 				transition: stroke 0.2s ease-in-out;
 			}
 		}
@@ -80,6 +91,8 @@
 				> path {
 					stroke: $accent;
 					fill: $accent;
+					-webkit-transition: all 0.4s ease-in-out;
+					-o-transition: all 0.4s ease-in-out;
 					transition: all 0.4s ease-in-out;
 				}
 			}
@@ -97,8 +110,8 @@
 
 	@media (max-width: 600px) {
 		margin-top: 0;
+		-ms-flex-item-align: center;
+		-ms-grid-row-align: center;
 		align-self: center;
-		// width: 88px;
-		// padding: 0 14px 0 0;
 	}
 }

@@ -6,8 +6,14 @@
 	border-radius: 16px;
 
 	.cart_delivery_header {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-pack: justify;
+		-ms-flex-pack: justify;
 		justify-content: space-between;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
 		align-items: center;
 		margin-bottom: 16px;
 
@@ -21,6 +27,8 @@
 		> button {
 			font-weight: 700;
 			color: $accent;
+			-webkit-transition: opacity 0.2s ease-in-out;
+			-o-transition: opacity 0.2s ease-in-out;
 			transition: opacity 0.2s ease-in-out;
 
 			&:hover {
@@ -30,20 +38,31 @@
 	}
 
 	.cart_delivery_info {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
 		flex-direction: column;
 		gap: 16px;
 
 		> div {
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
 			gap: 32px;
 
 			> span:first-child {
+				-webkit-box-flex: 0;
+				-ms-flex: 0 0 30%;
 				flex: 0 0 30%;
 				font-weight: 600;
 			}
 
 			> span:last-child {
+				-webkit-box-flex: 1;
+				-ms-flex: 1 0 auto;
 				flex: 1 0 auto;
 			}
 		}
@@ -51,6 +70,8 @@
 		.cart_delivery_point {
 			> div {
 				.cart_delivery_point_rating {
+					display: -webkit-box;
+					display: -ms-flexbox;
 					display: flex;
 					gap: 8px;
 					margin-top: 4px;
@@ -58,7 +79,11 @@
 					line-height: 1.23;
 
 					> div {
+						display: -webkit-box;
+						display: -ms-flexbox;
 						display: flex;
+						-webkit-box-align: center;
+						-ms-flex-align: center;
 						align-items: center;
 						gap: 4px;
 					}
@@ -68,6 +93,8 @@
 
 		.cart_delivery_products {
 			> div {
+				display: -webkit-box;
+				display: -ms-flexbox;
 				display: flex;
 				gap: 8px;
 
@@ -102,13 +129,19 @@
 	}
 
 	.cart_delivery_refusal {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
 		gap: 8px;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
 		align-items: center;
 		margin-top: 24px;
 		height: 22px;
 
 		> div {
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
 			gap: 3px;
 			font-size: 0.8125rem;
@@ -132,6 +165,7 @@
 					padding: 10px 16px 14px;
 					background-color: $white;
 					border-radius: 8px;
+					-webkit-box-shadow: $box-shadow-info-block;
 					box-shadow: $box-shadow-info-block;
 					cursor: default;
 					color: $black;
@@ -170,11 +204,17 @@
 
 		.cart_delivery_info {
 			> div:is(.cart_delivery_point, div) {
+				-webkit-box-orient: vertical;
+				-webkit-box-direction: normal;
+				-ms-flex-direction: column;
 				flex-direction: column;
 				gap: 0;
 			}
 
 			div.cart_delivery_products {
+				-webkit-box-orient: vertical;
+				-webkit-box-direction: normal;
+				-ms-flex-direction: column;
 				flex-direction: column;
 				gap: 12px;
 			}

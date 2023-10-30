@@ -4,8 +4,14 @@
 	margin-bottom: 40px;
 
 	> div:first-child {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-pack: justify;
+		-ms-flex-pack: justify;
 		justify-content: space-between;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
 		align-items: center;
 		margin-bottom: 16px;
 
@@ -24,15 +30,21 @@
 		> button {
 			line-height: 0;
 			padding: 4px;
+			-webkit-transform: rotate(180deg);
+			-ms-transform: rotate(180deg);
 			transform: rotate(180deg);
 
 			> svg {
 				> path {
+					-webkit-transition: fill 0.2s ease-in-out;
+					-o-transition: fill 0.2s ease-in-out;
 					transition: fill 0.2s ease-in-out;
 				}
 			}
 
 			&.active {
+				-webkit-transform: rotate(0deg);
+				-ms-transform: rotate(0deg);
 				transform: rotate(0deg);
 			}
 
@@ -47,7 +59,12 @@
 	}
 
 	> div:last-child {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
 		flex-direction: column;
 		gap: 20px;
 		padding-top: 0;
@@ -67,6 +84,8 @@
 			padding-top: 11px;
 
 			> div {
+				display: -webkit-box;
+				display: -ms-flexbox;
 				display: flex;
 			}
 		}

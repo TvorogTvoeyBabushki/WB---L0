@@ -1,19 +1,36 @@
 @import '@/assets/styles/variables';
 
 .price_wrapper {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-flex: 1;
+	-ms-flex-positive: 1;
 	flex-grow: 1;
 	gap: 16px;
 
 	> div:first-child {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
 		flex-direction: column;
 		width: 100px;
 
 		.quantity_btn_wrapper {
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-webkit-box-pack: justify;
+			-ms-flex-pack: justify;
 			justify-content: space-between;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
 			align-items: center;
+			-ms-flex-item-align: center;
+			-ms-grid-row-align: center;
 			align-self: center;
 			width: 100%;
 			padding: 10px 4px;
@@ -40,10 +57,19 @@
 	}
 
 	.price {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
 		flex-direction: column;
+		-webkit-box-align: end;
+		-ms-flex-align: end;
 		align-items: flex-end;
 		gap: 5px;
+		-webkit-box-flex: 1;
+		-ms-flex-positive: 1;
 		flex-grow: 1;
 		width: 110px;
 
@@ -60,6 +86,8 @@
 		}
 
 		> div:last-child {
+			width: -webkit-max-content;
+			width: -moz-max-content;
 			width: max-content;
 			font-size: 0.8125rem;
 			color: $gray;
@@ -88,13 +116,19 @@
 			}
 
 			> div {
+				display: -webkit-box;
+				display: -ms-flexbox;
 				display: flex;
+				-webkit-box-orient: vertical;
+				-webkit-box-direction: normal;
+				-ms-flex-direction: column;
 				flex-direction: column;
 				gap: 8px;
 				width: 239px;
 				padding: 11px 16px 13px;
 				background-color: $white;
 				border-radius: 8px;
+				-webkit-box-shadow: $box-shadow-info-block;
 				box-shadow: $box-shadow-info-block;
 				cursor: default;
 				color: $black;
@@ -104,7 +138,11 @@
 				right: -10px;
 
 				> div {
+					display: -webkit-box;
+					display: -ms-flexbox;
 					display: flex;
+					-webkit-box-pack: justify;
+					-ms-flex-pack: justify;
 					justify-content: space-between;
 
 					> span:first-child {
@@ -116,10 +154,17 @@
 	}
 
 	@media (max-width: 600px) {
+		-webkit-box-flex: 0;
+		-ms-flex-positive: 0;
 		flex-grow: 0;
 
 		> div:first-child {
+			-webkit-box-orient: horizontal;
+			-webkit-box-direction: normal;
+			-ms-flex-direction: row;
 			flex-direction: row;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
 			align-items: center;
 			gap: 16px;
 			width: auto;
@@ -148,8 +193,15 @@
 		}
 
 		.price {
+			width: -webkit-max-content;
+			width: -moz-max-content;
 			width: max-content;
+			-webkit-box-orient: horizontal;
+			-webkit-box-direction: normal;
+			-ms-flex-direction: row;
 			flex-direction: row;
+			-webkit-box-align: start;
+			-ms-flex-align: start;
 			align-items: flex-start;
 			position: absolute;
 			top: calc(0% + 13px);

@@ -1,12 +1,18 @@
 @import '@/assets/styles/variables';
 
 .sidebar {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
 	flex-direction: column;
 	gap: 24px;
 	padding: 16px 24px 24px;
 	border-radius: 16px;
 	background-color: $white;
+	-webkit-box-shadow: $box-shadow-info-block;
 	box-shadow: $box-shadow-info-block;
 	position: sticky;
 	top: 20px;
@@ -15,8 +21,14 @@
 	max-height: 604px;
 
 	.price_header {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-pack: justify;
+		-ms-flex-pack: justify;
 		justify-content: space-between;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
 		align-items: center;
 		margin-bottom: 8px;
 		font-size: 1.5rem;
@@ -24,7 +36,11 @@
 		line-height: 1.333;
 
 		> span:last-child {
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-webkit-box-align: end;
+			-ms-flex-align: end;
 			align-items: flex-end;
 			gap: 4px;
 
@@ -37,14 +53,24 @@
 
 	.price_content {
 		> div {
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-webkit-box-pack: justify;
+			-ms-flex-pack: justify;
 			justify-content: space-between;
 		}
 	}
 
 	.delivery_header {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-pack: justify;
+		-ms-flex-pack: justify;
 		justify-content: space-between;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
 		align-items: center;
 
 		> h3 {
@@ -54,6 +80,8 @@
 		> button {
 			width: 20px;
 			height: 20px;
+			-webkit-transition: opacity 0.2s ease-in-out;
+			-o-transition: opacity 0.2s ease-in-out;
 			transition: opacity 0.2s ease-in-out;
 
 			&:hover {
@@ -69,6 +97,8 @@
 
 		> span {
 			display: block;
+			max-width: -webkit-max-content;
+			max-width: -moz-max-content;
 			max-width: max-content;
 			margin-top: 4px;
 			color: $accent;
@@ -83,7 +113,11 @@
 	}
 
 	.delivery_refusal {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
 		align-items: center;
 		gap: 8px;
 		padding: 8px 8px 12px;
@@ -118,6 +152,7 @@
 					padding: 10px 16px 14px;
 					background-color: $white;
 					border-radius: 8px;
+					-webkit-box-shadow: $box-shadow-info-block;
 					box-shadow: $box-shadow-info-block;
 					cursor: default;
 					color: $black;
@@ -131,11 +166,15 @@
 		}
 
 		@media (max-width: 993px) {
+			-webkit-box-align: start;
+			-ms-flex-align: start;
 			align-items: flex-start;
 
 			> div {
 				> span {
 					display: block;
+					width: -webkit-max-content;
+					width: -moz-max-content;
 					width: max-content;
 				}
 			}
@@ -143,8 +182,14 @@
 	}
 
 	.payment_header {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-pack: justify;
+		-ms-flex-pack: justify;
 		justify-content: space-between;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
 		align-items: center;
 
 		> h3 {
@@ -154,6 +199,8 @@
 		> button {
 			width: 20px;
 			height: 20px;
+			-webkit-transition: opacity 0.2s ease-in-out;
+			-o-transition: opacity 0.2s ease-in-out;
 			transition: opacity 0.2s ease-in-out;
 
 			&:hover {
@@ -163,7 +210,11 @@
 	}
 
 	.payment_card {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-align: center;
+		-ms-flex-align: center;
 		align-items: center;
 		gap: 8px;
 		margin-top: 4px;
@@ -171,8 +222,14 @@
 		line-height: 1.23;
 
 		> div {
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
 			justify-content: center;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
 			align-items: center;
 			width: 32px;
 			height: 24px;
@@ -186,7 +243,12 @@
 	}
 
 	.payment_footer {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
 		flex-direction: column;
 		gap: 8px;
 		padding: 8px 8px 12px;
@@ -197,7 +259,11 @@
 		line-height: 1.23;
 
 		> label {
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
 			align-items: center;
 			gap: 8px;
 			cursor: pointer;
@@ -206,8 +272,12 @@
 
 	.btn_payment_wrapper {
 		> div {
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
 			gap: 9px;
+			-webkit-box-align: start;
+			-ms-flex-align: start;
 			align-items: flex-start;
 			margin-top: 12px;
 			font-size: 0.8125rem;
@@ -227,11 +297,16 @@
 	}
 
 	@media (max-width: 920px) {
+		-webkit-box-orient: horizontal;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: row;
 		flex-direction: row;
+		-ms-flex-wrap: wrap;
 		flex-wrap: wrap;
 		height: auto;
 		padding: 0;
 		background-color: $cart-main-block;
+		-webkit-box-shadow: none;
 		box-shadow: none;
 		border-radius: 0;
 		position: static;
@@ -239,15 +314,23 @@
 		gap: 16px;
 
 		> div:is(:first-child, :last-child) {
+			-webkit-box-flex: 0;
+			-ms-flex: 0 1 100%;
 			flex: 0 1 100%;
 		}
 
 		> div:nth-child(2) {
+			-webkit-box-flex: 0;
+			-ms-flex: 0 1 48%;
 			flex: 0 1 48%;
+			display: -webkit-box;
+			display: -ms-flexbox;
 			display: flex;
 		}
 
 		> div:nth-child(3) {
+			-webkit-box-flex: 1;
+			-ms-flex: 1 1 48%;
 			flex: 1 1 48%;
 		}
 
@@ -259,6 +342,8 @@
 		}
 
 		.delivery_refusal {
+			-webkit-box-align: center;
+			-ms-flex-align: center;
 			align-items: center;
 			background-color: $smoky-dark;
 			margin-top: 0;
@@ -287,10 +372,14 @@
 
 	@media (max-width: 460px) {
 		> div:nth-child(2) {
+			-webkit-box-flex: 1;
+			-ms-flex: 1 1 100%;
 			flex: 1 1 100%;
 		}
 
 		.delivery_refusal {
+			-webkit-box-align: start;
+			-ms-flex-align: start;
 			align-items: flex-start;
 
 			> svg {

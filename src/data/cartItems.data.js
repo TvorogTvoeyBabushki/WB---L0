@@ -1,7 +1,7 @@
 export const cartItemsData = [
 	{
 		id: 1,
-		src: '/item1.png',
+		src: '/WB-L0/item1.png',
 		title: 'Футболка UZcotton мужская',
 		description: {
 			color: 'белый',
@@ -17,7 +17,7 @@ export const cartItemsData = [
 	},
 	{
 		id: 2,
-		src: '/item2.png',
+		src: '/WB-L0/item2.png',
 		title:
 			'Силиконовый чехол картхолдер (отверстия) для карт, прозрачный кейс бампер на Apple iPhone XR, MobiSafe',
 		description: {
@@ -33,7 +33,7 @@ export const cartItemsData = [
 	},
 	{
 		id: 3,
-		src: '/item3.png',
+		src: '/WB-L0/item3.png',
 		title:
 			'Карандаши цветные Faber-Castell "Замок", набор 24 цвета, заточенные, шестигранные, Faber-Castell',
 		address: 'Коледино WB',
@@ -49,7 +49,7 @@ export const cartItemsData = [
 export const cartMissedItemsData = [
 	{
 		id: 4,
-		src: '/item1.png',
+		src: '/WB-L0/item1.png',
 		title: 'Футболка UZcotton мужская',
 		description: {
 			color: 'белый',
@@ -65,7 +65,7 @@ export const cartMissedItemsData = [
 	},
 	{
 		id: 5,
-		src: '/item2.png',
+		src: '/WB-L0/item2.png',
 		title:
 			'Силиконовый чехол картхолдер (отверстия) для карт, прозрачный кейс бампер на Apple iPhone XR, MobiSafe',
 		description: {
@@ -81,7 +81,7 @@ export const cartMissedItemsData = [
 	},
 	{
 		id: 6,
-		src: '/item3.png',
+		src: '/WB-L0/item3.png',
 		title:
 			'Карандаши цветные Faber-Castell "Замок", набор 24 цвета, заточенные, шестигранные, Faber-Castell',
 		address: 'Коледино WB',
