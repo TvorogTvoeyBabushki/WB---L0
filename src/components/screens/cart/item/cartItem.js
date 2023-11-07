@@ -126,7 +126,7 @@ export class CartItem extends UseCartItem {
 			this.cartItemPrice.draw(cartItem, cartForm, header, footer)
 		)
 
-		this.cartItemCheckbox.element?.addEventListener('click', () =>
+		this.cartItemCheckbox.element?.addEventListener('change', () =>
 			this.handleClickCheckbox(cartItem, cartForm, 'selected')
 		)
 

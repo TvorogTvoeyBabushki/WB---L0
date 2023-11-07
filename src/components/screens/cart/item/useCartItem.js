@@ -59,6 +59,12 @@ export class UseCartItem {
 		cartSidebar.priceWrapper && cartSidebar.drawPriceWrapper()
 		cartSidebar.isActiveCheckbox && cartSidebar.handleClickCheckbox('checkbox')
 
+		if (cartSidebar.btnPayment) {
+			!selectedProducts.length
+				? (cartSidebar.btnPayment.element.disabled = true)
+				: (cartSidebar.btnPayment.element.disabled = false)
+		}
+
 		if (
 			!sessionItemsInfo.filter(itemInfo => itemInfo.isSelectedProduct).length
 		) {

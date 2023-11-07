@@ -37,7 +37,7 @@ export class useCartFormPersonalInfo {
 		}
 
 		if (variant.toLowerCase() === 'почта') {
-			if (!validEmail.test(e.target.value) && e.target.value.length) {
+			if (!validEmail.test(e.target.value) && e.target.value.trim().length) {
 				drawValidate(
 					'cart__personal-info__validate-email',
 					'Проверьте адрес электронной почты',

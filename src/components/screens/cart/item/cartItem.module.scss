@@ -17,7 +17,7 @@
 		-ms-flex: 0 1 62%;
 		flex: 0 1 62%;
 
-		> input {
+		> label {
 			margin-right: 12px;
 			margin-top: 37px;
 		}
@@ -120,8 +120,9 @@
 			-ms-flex: none;
 			flex: none;
 
-			> input {
+			> label {
 				margin-top: 0;
+				margin-right: 0;
 				background-color: $white;
 				position: absolute;
 				top: calc(0% + 4px);

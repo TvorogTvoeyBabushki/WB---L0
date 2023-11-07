@@ -84,7 +84,7 @@ export class SelectedProducts extends UseSelectedProducts {
 			this.checkboxSelectAll.draw()
 		)
 
-		this.checkboxSelectAll.element.addEventListener('click', () =>
+		this.checkboxSelectAll.element.addEventListener('change', () =>
 			this._handleClickCheckbox(this.checkboxSelectAll)
 		)
 	}

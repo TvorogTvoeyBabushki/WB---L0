@@ -13,7 +13,8 @@ export class RadioButton {
 
 	draw(name) {
 		this.element = RenderService.htmlToElement(template)
-		this.element.setAttribute('name', name)
+		this.radioBtn = this.element.querySelector('input')
+		this.radioBtn.setAttribute('name', name)
 
 		this.addStyles()
 		return this.element

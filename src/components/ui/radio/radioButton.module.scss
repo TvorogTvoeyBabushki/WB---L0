@@ -3,30 +3,35 @@
 .radio_btn {
 	width: 16.5px;
 	height: 16.5px;
-	visibility: hidden;
+	border-radius: 50%;
 	position: relative;
-	cursor: pointer;
+
+	> input {
+		width: 100%;
+		height: 100%;
+		visibility: hidden;
+		position: absolute;
+	}
 
 	&::before {
 		content: '';
-		display: block;
-		width: 16.5px;
+		width: 100%;
 		height: 100%;
-		border-radius: 50%;
+		border-radius: inherit;
 		background-color: $white;
-		visibility: visible;
 		border: 1px solid rgba($black, 0.2);
 		background: url('/WB-L0/dot.svg') center no-repeat;
+		cursor: pointer;
+
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
 	}
 
-	&.active {
-		&::before {
-			background-color: $accent;
-			border: none;
-		}
-
-		&:after {
-			visibility: visible;
-		}
+	&.active::before {
+		background-color: $accent;
+		border: none;
 	}
 }
